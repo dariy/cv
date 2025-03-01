@@ -91,6 +91,7 @@ header {
     width: 100%;
     min-width: 48rem;
 }
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -139,13 +140,16 @@ section.contacts ul {
 }
 
 .thePhone::before {
+    color: #2b2;
     content: "\260E";
     margin-right: 0.4rem;
 }
 
 .theEmail::before {
+    color: #2b2;
     content: "\2709";
     margin-right: 0.4rem;
+    font-weight: 700;
 }
 
 /* Typography */
@@ -159,4 +163,9 @@ h2 {
     font-size: 1.5rem;
     font-weight: 700;
     /* margin-bottom: 1rem; */
+}
+
+.delimiter {
+    color: #2b2;
+    font-weight: 700;
 }
