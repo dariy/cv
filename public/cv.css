@@ -1,0 +1,162 @@
+/* Reset some basic elements */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dt,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+/* Simplify box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+/* Make images easier to work with */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/*****************************************************************************/
+/* Custom styles */
+/*****************************************************************************/
+.cry {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+body {
+    font-family: "Verdana", "Arial", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: #333;
+    background-color: lightgray;
+}
+
+header,
+main,
+footer {
+    width: 48rem;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333;
+    color: whitesmoke;
+    width: 100%;
+    min-width: 48rem;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 48rem;
+    margin: 0 auto;
+}
+
+header h1 {
+    margin: 1rem auto;
+}
+
+header a {
+    color: aliceblue;
+}
+
+header h1,
+header section {
+    margin: 0 auto;
+    width: 48rem;
+}
+
+header section {
+    padding-bottom: 1rem;
+}
+
+section.summary {
+    height: 100%;
+    font-size: 1.2rem;
+    /* border-right: 1spx dotted #666; */
+    margin-right: 1rem;
+}
+
+/* Contacts */
+section.contacts {
+    min-width: 15rem;
+    max-width: 15rem;
+    padding: 0 1rem;
+    height: 100%;
+    line-height: 2.5;
+    font-size: 1.1rem;
+}
+
+section.contacts ul {
+    list-style-type: none;
+}
+
+.thePhone::before {
+    content: "\260E";
+    margin-right: 0.4rem;
+}
+
+.theEmail::before {
+    content: "\2709";
+    margin-right: 0.4rem;
+}
+
+/* Typography */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    /* margin-bottom: 1rem; */
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    /* margin-bottom: 1rem; */
+}
