@@ -1,0 +1,297 @@
+/* Reset some basic elements */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dt,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+/* Simplify box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+/* Make images easier to work with */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* @formatter:off */
+/* colors */
+
+/* background-color: #333; */       /* dark background */
+/* background-color: aliceblue; */  /* light background */
+/* color: #333; */                  /* dark text */
+/* color: aliceblue; */             /* light text */
+/* color: #2b2; */                  /* highlight green */
+
+/* @formatter:on */
+
+/*****************/
+/* Custom styles */
+/*****************/
+body {
+    font-family: "Verdana", "Arial", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: aliceblue;
+    background-color: #333;
+}
+
+a {
+    color: #108010;
+}
+
+a:hover {
+    color: #2b2;
+}
+
+header,
+main,
+footer {
+    width: 48rem;
+    margin: 0 auto;
+}
+
+header {
+    max-width: 48rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 0;
+}
+
+header h1 {
+    text-align: left;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+header h2 {
+    text-align: left;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+header a, footer a {
+    color: aliceblue;
+    text-decoration: underline;
+}
+
+header a:hover, footer a:hover {
+    color: #2b2;
+}
+
+section.summary {
+    padding-right: 0.5rem;
+    font-size: 1rem;
+    width: 34rem;
+    height: 100%;
+}
+
+section.summary strong {
+    color: #2b2;
+    font-weight: 400;
+}
+
+/* Contacts */
+section.contacts {
+    min-width: 14rem;
+    max-width: 14rem;
+    padding: 0 0 0 0.5rem;
+    height: 100%;
+    /*line-height: 1.9;*/
+    font-size: 1rem;
+    overflow: hidden;
+}
+
+section.contacts ul {
+    list-style-type: none;
+}
+
+.thePhone::before {
+    color: #2b2;
+    content: "\260E";
+    margin-right: 0.4rem;
+}
+
+.theEmail::before {
+    color: #2b2;
+    content: "\2709";
+    margin-right: 0.4rem;
+    font-weight: 700;
+}
+
+.theEmail a {
+    cursor: pointer;
+}
+
+.theEmail a:hover,
+.theEmail a:hover .delimiter {
+    color: #2b2;
+}
+
+/* Main */
+.main-container {
+    background-color: aliceblue;
+}
+
+main {
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+main h3 {
+    padding: 0.3rem 0 0 0;
+}
+
+main ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+    padding-bottom: 0.3rem;
+}
+
+main a:visited {
+    color: #333;
+}
+
+main section {
+    height: 100%;
+    padding-right: 0.5rem;
+    width: 34rem;
+}
+
+main section.skills,
+main section.additional-info {
+    min-width: 14rem;
+    max-width: 14rem;
+    padding: 0 0 0 0.5rem;
+    height: 100%;
+}
+
+/* Footer */
+footer p {
+    color: aliceblue;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 1rem 0;
+    text-align: left;
+}
+
+/* Typography */
+h1, h2, h3 {
+    text-transform: capitalize;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h1 a {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.8rem 0 0 0;
+}
+
+.delimiter {
+    color: #2b2;
+    font-weight: 700;
+}
+
+/* Media queries */
+@media {
+    .print {
+        display: none;
+    }
+}
+
+@media print {
+    body, a, span, strong {
+        color: black !important;
+    }
+
+    strong {
+        font-weight: bold !important;
+    }
+
+    main {
+        padding: 0;
+    }
+
+    footer, .web {
+        display: none;
+    }
+
+    .print {
+        line-height: 1.4rem;
+        display: inline-block;
+    }
+
+    .intend {
+        padding-left: 1rem;
+    }
+}
