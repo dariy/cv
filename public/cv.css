@@ -124,12 +124,14 @@ header h2 {
     align-items: flex-end;
 }
 
-header a, footer a {
+header a,
+footer a {
     color: aliceblue;
     text-decoration: underline;
 }
 
-header a:hover, footer a:hover {
+header a:hover,
+footer a:hover {
     color: #2b2;
 }
 
@@ -173,7 +175,8 @@ section.contacts ul {
     font-weight: 700;
 }
 
-.theEmail a {
+.theEmail a,
+.theEmailRequest {
     cursor: pointer;
 }
 
@@ -191,10 +194,10 @@ main {
     width: 100%;
     max-width: 48rem;
     margin: 0 auto;
+    padding: 0 0 1rem 0;
     color: #333;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row-reverse;
     justify-content: center;
     align-items: flex-start;
 }
@@ -209,22 +212,42 @@ main ul {
     padding-bottom: 0.3rem;
 }
 
+main a {
+    color: #108010;
+    text-decoration: none;
+}
+
+main a:hover {
+    color: #2b2;
+    text-decoration: underline;
+}
+
 main a:visited {
-    color: #333;
+    /*color: #333;*/
 }
 
 main section {
     height: 100%;
-    padding-right: 0.5rem;
+    padding: 0 0 1rem 0.5rem;
     width: 34rem;
 }
 
-main section.skills,
-main section.additional-info {
+section.experience,
+section.education {
+    padding: 0 0.5rem 0 0;
+    margin: 0;
+}
+
+section.skills,
+section.additional-info {
     min-width: 14rem;
     max-width: 14rem;
     padding: 0 0 0 0.5rem;
     height: 100%;
+}
+
+section.education h3 {
+    text-transform: none;
 }
 
 /* Footer */
@@ -237,7 +260,9 @@ footer p {
 }
 
 /* Typography */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     text-transform: capitalize;
 }
 
@@ -257,9 +282,13 @@ h2 {
     padding: 0.8rem 0 0 0;
 }
 
-.delimiter {
+i {
     color: #2b2;
-    font-weight: 700;
+    font-style: normal;
+}
+
+main i {
+    color: #108010;
 }
 
 /* Media queries */
@@ -270,8 +299,13 @@ h2 {
 }
 
 @media print {
-    body, a, span, strong {
+    body,
+    a,
+    span,
+    strong {
         color: black !important;
+        background-color: transparent !important;
+        text-decoration: none !important;
     }
 
     strong {
@@ -282,7 +316,8 @@ h2 {
         padding: 0;
     }
 
-    footer, .web {
+    footer,
+    .web {
         display: none;
     }
 
