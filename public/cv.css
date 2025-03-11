@@ -301,14 +301,23 @@ main i {
 @media print {
     body,
     a,
+    .thePhone::before,
+    .theEmail::before,
     span,
-    strong {
+    strong,
+    i,
+    em,
+    b {
         color: black !important;
         background-color: transparent !important;
         text-decoration: none !important;
     }
 
-    strong {
+    em, i {
+        font-style: italic !important;
+    }
+
+    strong, b {
         font-weight: bold !important;
     }
 
@@ -316,9 +325,13 @@ main i {
         padding: 0;
     }
 
-    footer,
+    /*footer,*/
     .web {
         display: none;
+    }
+
+    footer p {
+        padding: 0.5rem 0;
     }
 
     .print {
