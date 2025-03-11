@@ -8,7 +8,7 @@ export const purify = (() => {
     const purify = DOMPurify(window);
     purify.setConfig({
         ALLOWED_TAGS: ["strong", "span", "i", "a", "ul", "li", "p", "h1", "h2", "h3"],
-        ALLOWED_ATTR: ["class", "href", "target", "rel"],
+        ALLOWED_ATTR: ["class", "href", "target", "rel"]
     });
     // For old browsers: https://owasp.org/www-community/attacks/Reverse_Tabnabbing
     purify.addHook("afterSanitizeAttributes", (node) => {
@@ -25,7 +25,7 @@ export const getLink = (url, title) => (url ? `<a href="${url}">${title}</a>` : 
 export const getDatesElement = (start, end) => {
     return Object.assign(create("p"), {
         classList: ["dates"],
-        innerHTML: `${getRangeDate(start, end)} (${getPeriodText(start, end)})`,
+        innerHTML: `${getRangeDate(start, end)} (${getPeriodText(start, end)})`
     });
 
     // TODO: extract into a separate service and to cover by tests all corner cases.
@@ -47,7 +47,7 @@ export const getDatesElement = (start, end) => {
                 "The endDate date is before the startDate date. Start date:",
                 startDate,
                 "End date:",
-                endDate,
+                endDate
             );
             return "";
         }
@@ -97,15 +97,15 @@ export const emailElementBuild = (aName, anEmail, title = "", emailTitle) =>
                 "_blank",
                 "noopener"
             );
-        },
+        }
     });
 
 export const phoneElementBuild = (aPhone) =>
     Object.assign(create("a"), {
         href: aPhone.startsWith("+") ? `tel:${aPhone}` : `tel:+1${aPhone}`,
         innerHTML: purify.sanitize(
-            `${aPhone.slice(0, 3)}<i>&#0045;</i>${aPhone.slice(3, 6)}<i>&#0045;</i>${aPhone.slice(6)}`,
-        ),
+            `${aPhone.slice(0, 3)}<i>&#0045;</i>${aPhone.slice(3, 6)}<i>&#0045;</i>${aPhone.slice(6)}`
+        )
     });
 
 /**
