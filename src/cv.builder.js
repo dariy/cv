@@ -1,23 +1,10 @@
-import {
-    $,
-    $$,
-    create,
-    createFragment,
-    emailElementBuild,
-    getCurrentYear,
-    getDatesElement,
-    getLink,
-    getLinkTitleFromUrl,
-    getTheProfessionalYears,
-    phoneDecode,
-    phoneElementBuild,
-    purify,
-} from "./cv.lib.js";
+import { contact, dom, links, time } from "./cv.lib.js";
+import "./cv.fragment.js";
 
 export class CvBuilder {
     build(cv) {
         document.title = `CV: ${cv.name}`;
-        $$(".author").forEach((element) => (element.innerText = cv.name));
+        dom.$$(".author").forEach((element) => (element.innerText = cv.name));
         this.insertSummary(cv.summary);
         this.insertContacts(cv.contacts);
         this.insertExperience(cv.experience);
@@ -25,97 +12,60 @@ export class CvBuilder {
         this.insertEducation(cv.education);
     }
 
-    insertSummary(summary) {
-        const p = create("p");
-        p.innerHTML = purify.sanitize(
-            summary.template
-                .replace(/\*\*(\w+)\*\*/g, '<strong class="$1"></strong>')
-                .replace(/\[\[(\w+)]]/g, '<span class="$1"></span>'),
-        );
+    insertSummary(data) {
+        const p = dom.create("p").setHTML(
+            data.template
+                .replace(/\*\*(\w+)\*\*/g, `<strong class="$1"></strong>`)
+                .replace(/__(\w+)__/g, `<em class="$1"></em>`)
+                .replace(/\[\[(\w+)]]/g, `<span class="$1"></span>`));
 
-        $(".summary").appendChild(p);
-        $(".theCurrentYear").innerText = getCurrentYear();
-        $(".theProfessionalYears").innerHTML = getTheProfessionalYears(summary.since);
+        dom.$(".summary").appendChild(p);
+        dom.$(".theCurrentYear").innerText = time.getCurrentYear();
+        dom.$(".theProfessionalYears").setHTML(time.getTheProfessionalYears(data.since));
     }
 
     insertContacts(data) {
-        $(".thePhone").appendChild(phoneElementBuild(phoneDecode(data.phone).join("")));
-        $(".theEmail").appendChild(emailElementBuild(data.name, data.email));
-        $(".theContactsLocation").innerHTML = data.location.url
-            ? getLink(data.location.url, data.location.title)
-            : data.location.title;
+        dom.$(".thePhone").appendChild(contact.phoneBuild(contact.phone.decode(data.phone).join("")));
+        dom.$(".theEmail").appendChild(contact.emailBuild(data.name, data.email));
+        dom.$(".theContactsLocation").setHTML(links.build(data.location.url, data.location.title));
+        dom.$(".theEmailRequest").replaceWith(contact.emailBuild(data.name, data.email, "request", "CV Reference Request"));
+        dom.$(".theCV").setHTML(links.build(data.cv, data.cv));
 
-        $(".theEmailRequest").replaceWith(emailElementBuild(data.name, data.email, "request", "CV Reference Request"));
-        $(".theCV").innerHTML = getLink(data.cv, data.cv);
-
-        insertLinks(data.links);
-
-        function insertLinks(links) {
-            const fragment = createFragment();
-            links.forEach(({ url, title, prefix }) => {
-                const item = create("li");
-                const link = getLinkTitleFromUrl(url);
-
-                // TODO: simplify markup for web and print and use only one element for it.
-                item.innerHTML = purify.sanitize(`
-                    <span class="web">${prefix || ""}${getLink(url, title || link)}</span>
-                    <span class="print">${link}</span>`);
-                fragment.appendChild(item);
-            });
-            $(".contacts ul").appendChild(fragment);
-        }
+        const fragment = dom.createFragment().addLinks(data.links);
+        dom.$(".contacts ul").appendChild(fragment);
     }
 
-    insertExperience(experience) {
-        const fragment = createFragment();
-        experience.forEach((item) => {
-            const header = create("h3");
-            header.innerHTML = purify.sanitize(`
-			${item.role} <i>&#0064;</i>
-			${item.company.url ? getLink(item.company.url, item.company.name) : item.company.name}
-			(${item.location.url ? getLink(item.location.url, item.location.name) : item.location.name})`);
-            fragment.appendChild(header);
-            fragment.appendChild(getDatesElement(item.startDate, item.endDate));
-
-            const achievements = create("ul");
-            achievements.innerHTML = purify.sanitize(
-                item.achievements.map((achievement) => `<li>${achievement}</li>`).join("\n"),
-            );
-            fragment.appendChild(achievements);
+    insertExperience(data) {
+        const fragment = dom.createFragment();
+        data.forEach((item) => {
+            const title = `
+                ${item.role} <i>&#0064;</i>
+                ${links.build(item.company.url, item.company.name)}
+                (${links.build(item.location.url, item.location.name)})`;
+            fragment.addHeader(title);
+            fragment.addDates(item.startDate, item.endDate);
+            fragment.addList(item.achievements);
         });
-        $("section.experience").appendChild(fragment);
+        dom.$("section.experience").appendChild(fragment);
     }
 
-    insertExpertise(expertise) {
-        const fragment = createFragment();
-
-        expertise.forEach((area) => {
-            const header = create("h3");
-            header.textContent = area.title;
-            fragment.appendChild(header);
-
-            const ul = create("ul");
-            ul.innerHTML = purify.sanitize(area.skills.map((skill) => `<li>${skill}</li>`).join(""));
-            fragment.appendChild(ul);
+    insertExpertise(data) {
+        const fragment = dom.createFragment();
+        data.forEach((area) => {
+            fragment.addHeader(area.title);
+            fragment.addList(area.skills);
         });
 
-        $("section.skills").appendChild(fragment);
+        dom.$("section.skills").appendChild(fragment);
     }
 
-    insertEducation(education) {
-        const fragment = createFragment();
-        education.forEach((item) => {
-            const header = create("h3");
-            header.textContent = item.title;
-            fragment.appendChild(header);
-            fragment.appendChild(getDatesElement(item.startDate, item.endDate));
-
-            const list = create("ul");
-            list.innerHTML = purify.sanitize(
-                [`<li>${item.place}</li>`, ...item.additionalInfo.map((info) => `<li>${info}</li>`)].join("\n"),
-            );
-            fragment.appendChild(list);
+    insertEducation(data) {
+        const fragment = dom.createFragment();
+        data.forEach((item) => {
+            fragment.addHeader(item.title);
+            fragment.addDates(item.startDate, item.endDate);
+            fragment.addList(item.additionalInfo, item.place);
         });
-        $("section.education").appendChild(fragment);
+        dom.$("section.education").appendChild(fragment);
     }
 }

@@ -67,7 +67,8 @@ select {
 /* background-color: aliceblue; */  /* light background */
 /* color: #333; */                  /* dark text */
 /* color: aliceblue; */             /* light text */
-/* color: #2b2; */                  /* highlight green */
+/* color: #2b2; */                  /* highlight on dark background, hover */
+/* color: #108010; */               /* highlight on light background */
 
 /* @formatter:on */
 
@@ -85,11 +86,28 @@ body {
 }
 
 a {
-    color: #108010;
+    color: aliceblue;
 }
 
 a:hover {
+    color: #108010;
+}
+
+a:visited {
+    color: aliceblue;
+    /*color: #333;*/
+}
+
+main a {
+    color: #108010;
+}
+
+main a:hover {
     color: #2b2;
+}
+
+main a:visited {
+    color: #333;
 }
 
 header,
@@ -126,7 +144,6 @@ header h2 {
 
 header a,
 footer a {
-    color: aliceblue;
     text-decoration: underline;
 }
 
@@ -153,7 +170,6 @@ section.contacts {
     max-width: 14rem;
     padding: 0 0 0 0.5rem;
     height: 100%;
-    /*line-height: 1.9;*/
     font-size: 1rem;
     overflow: hidden;
 }
@@ -321,6 +337,10 @@ main i {
         font-weight: bold !important;
     }
 
+    .summary a {
+        font-style: italic;
+    }
+
     main {
         padding: 0;
     }
@@ -341,5 +361,9 @@ main i {
 
     .intend {
         padding-left: 1rem;
+    }
+
+    footer * {
+        color: black !important;
     }
 }

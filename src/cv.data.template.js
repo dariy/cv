@@ -2,10 +2,9 @@
 export const cv_data_template = {
     name: "John Doe",
     since: 2000,
-    desiredRole: "The role",
     summary: {
         template: '**theProfessionalYears** <strong class="theProfessionalYears"></strong> ',
-        since: 2000,
+        since: 2000
     },
     contacts: {
         email: ["right", "center", "left"], // stub "protection" from static crawlers.
@@ -15,18 +14,18 @@ export const cv_data_template = {
         cv: "https://cv.username.com",
         location: {
             url: "https://www.google.com/maps/place/[[TheLocation]]",
-            title: "[[The Location]]",
+            title: "[[The Location]]"
         },
         links: [
             {
                 url: "https://github.com/[[username/cv]]",
-                title: "github: [[username/cv]]",
+                title: "github: [[username/cv]]"
             },
             {
                 url: "https://www.linkedin.com/in/[[username]]",
-                title: "linkedin: [[username]]",
-            },
-        ],
+                title: "linkedin: [[username]]"
+            }
+        ]
     },
     experience: [
         {
@@ -35,14 +34,14 @@ export const cv_data_template = {
             location: { name: "The location", url: "https://www.google.com/maps/place/[[TheLocation]]/" },
             startDate: "2022-07-01",
             endDate: "2025-02-28",
-            achievements: ["Achievement number one", "Achievement number two"],
-        },
+            achievements: ["Achievement number one", "Achievement number two"]
+        }
     ],
     expertise: [
         {
             title: "Main areas",
-            skills: ["one", "two", "three"],
-        },
+            skills: ["one", "two", "three"]
+        }
     ],
     education: [
         {
@@ -50,7 +49,7 @@ export const cv_data_template = {
             startDate: "2022-07-01",
             endDate: "2025-02-28",
             place: "The place",
-            additionalInfo: ["Additional info one", "Additional info two"],
-        },
-    ],
+            additionalInfo: ["Additional info one", "Additional info two"]
+        }
+    ]
 };
