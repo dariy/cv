@@ -1,15 +1,11 @@
-// Copy cvDataTemplate below to `cv.data.js` into export const cv_data = { }, and insert your cv.
+// Copy cv_data_template below to `cv.data.js` into export const cv_data = { }, and insert your cv there.
 export const cv_data_template = {
     name: "John Doe",
     since: 2000,
     desiredRole: "The role",
-    summary:
-        '**theProfessionalYears** <strong class="theProfessionalYears"></strong> ' +
-        '**theDesiredRole** <strong class="theDesiredRole"></strong> ' +
-        '[[theLocation]]<span class="theLocation"></span> ',
-    location: {
-        url: "https://www.google.com/maps/place/[[TheLocation]]",
-        title: "[[The Location]]",
+    summary: {
+        template: '**theProfessionalYears** <strong class="theProfessionalYears"></strong> ',
+        since: 2000,
     },
     contacts: {
         email: ["right", "center", "left"], // stub "protection" from static crawlers.
@@ -46,6 +42,15 @@ export const cv_data_template = {
         {
             title: "Main areas",
             skills: ["one", "two", "three"],
+        },
+    ],
+    education: [
+        {
+            title: "The title",
+            startDate: "2022-07-01",
+            endDate: "2025-02-28",
+            place: "The place",
+            additionalInfo: ["Additional info one", "Additional info two"],
         },
     ],
 };
