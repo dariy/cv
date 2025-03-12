@@ -1,11 +1,11 @@
-import DOMPurify from "./purify.es.mjs";
+import DOMPurify from "dompurify";
 
 // DOMPurify
 export const purify = (() => {
     const purify = DOMPurify(window);
     purify.setConfig({
         ALLOWED_TAGS: ["strong", "span", "i", "a", "ul", "li", "p", "h1", "h2", "h3"],
-        ALLOWED_ATTR: ["class", "href", "target", "rel"]
+        ALLOWED_ATTR: ["class", "href", "target", "rel"],
     });
     // For old browsers: https://owasp.org/www-community/attacks/Reverse_Tabnabbing
     purify.addHook("afterSanitizeAttributes", (node) => {
@@ -19,7 +19,7 @@ export const purify = (() => {
         setHTML(content) {
             this.innerHTML = purify.sanitize(content);
             return this;
-        }
+        },
     });
 
     return purify;
@@ -36,35 +36,37 @@ export const dom = {
         }
         return element;
     },
-    createFragment: () => document.createDocumentFragment()
+    createFragment: () => document.createDocumentFragment(),
 };
 
 // Link handling
 export const links = {
     build: (url, title) => (url ? `<a href="${url}">${title}</a>` : title),
-    getLinkTitleFromUrl: (url) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
+    getLinkTitleFromUrl: (url) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""),
 };
 
 // Contact info handling
 export const contact = {
     emailBuild: (aName, anEmail, title = "", emailTitle) =>
         Object.assign(dom.create("a"), {
-            innerHTML: purify.sanitize(title || `${anEmail[2]}<b>&#0064</b>${anEmail[1]}.${anEmail[0]}`),
+            innerHTML: purify.sanitize(
+                title || `${anEmail[2]}<b>&#0064</b>${anEmail[1]}.${anEmail[0]}`,
+            ),
             // prettier-ignore
             "onclick": () => {
                 window.open(
                     `mailto:"${aName}" <${anEmail[2]}@${anEmail[1]}.${anEmail[0]}>${emailTitle ? `?subject=${emailTitle}` : ""}`,
                     "_blank",
-                    "noopener"
+                    "noopener",
                 );
-            }
+            },
         }),
     phoneBuild: (aPhone) =>
         Object.assign(dom.create("a"), {
             href: aPhone.startsWith("+") ? `tel:${aPhone}` : `tel:+1${aPhone}`,
             innerHTML: purify.sanitize(
-                `${aPhone.slice(0, 3)}<i>&#0045;</i>${aPhone.slice(3, 6)}<i>&#0045;</i>${aPhone.slice(6)}`
-            )
+                `${aPhone.slice(0, 3)}<i>&#0045;</i>${aPhone.slice(3, 6)}<i>&#0045;</i>${aPhone.slice(6)}`,
+            ),
         }),
     phone: {
         decode: (aPhone) => {
@@ -74,14 +76,14 @@ export const contact = {
                 [p[2], p[0], p[1], p[5], p[4], p[3], p[6], p[8], p[7], p[9]];
             return p;
         },
-        encode: (aPhone) => {
+        "encode": (aPhone) => {
             const p = aPhone instanceof Array ? aPhone : aPhone.split("");
             [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9]] =
                 // eslint-disable-next-line no-self-assign
                 [p[1], p[2], p[0], p[5], p[4], p[3], p[6], p[8], p[7], p[9]];
             return p;
-        }
-    }
+        },
+    },
 };
 
 // Date and time utilities
@@ -108,10 +110,11 @@ export const time = {
 
         if (years <= 0 && months < 0) {
             console.error(
-                "The endDate date is before the startDate date. Start date:",
+                "The endDate date is before the startDate date.",
+                "Start date:",
                 startDate,
                 "End date:",
-                endDate
+                endDate,
             );
             return "";
         }
@@ -133,5 +136,5 @@ export const time = {
         }
 
         return `${years} ${yearText}, ${months} ${monthText}`;
-    }
+    },
 };
