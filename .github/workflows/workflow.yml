@@ -17,7 +17,7 @@ jobs:
         run: npm install
 
       - name: Create JSON file
-        run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" > src/cv.data.js
+        run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" | base64 -d > src/cv.data.js
 
       - name: Build
         run: npm run build # The build command of your project
