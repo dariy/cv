@@ -1,6 +1,10 @@
+import { network } from "./cv.lib.js";
 import { CvBuilder } from "./cv.builder.js";
-// `cv_data` has the same structure as `cv_data_template` in cv.data.template.js.
-import { cv_data } from "./cv.data.js";
-import { cv_data_template } from "./cv.data.template.js";
 
-window.addEventListener("DOMContentLoaded", () => new CvBuilder().build(cv_data || cv_data_template));
+window.addEventListener("DOMContentLoaded", async () => {
+    /** @type {import("./cv.types.js").CvData | null} */
+    const cv =
+        (await network.downloadCV("cv", "/data/")) ||
+        (await network.downloadCV("cv.template", "/data/"));
+    if (cv) new CvBuilder().build(cv);
+});
