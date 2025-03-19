@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main # The branch name you are commit the new changes
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
