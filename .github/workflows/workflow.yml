@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main # The branch name you are commit the new changes
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,11 +17,14 @@ jobs:
       - name: Install all dependencies
         run: npm install
 
-      - name: Create JSON file
-        run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" | base64 -d > data/cv.json
-
       - name: Build
         run: npm run build # The build command of your project
+
+      - name: Create data directory
+        run: mkdir -p dist/data
+
+      - name: Create JSON file
+        run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" | base64 -d > dist/data/cv.json
 
       - name: Push
         uses: s0/git-publish-subdir-action@develop
