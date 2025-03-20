@@ -12,13 +12,13 @@ on:
         required: true
         type: string
     secrets:
-      CV_DATA_JS_CONTENT:
-        description: "Base64 encoded CV data"
-        required: true
-      GITHUB_TOKEN:
-        description: "GitHub token"
-        required: true
-      HOSTING_HOOK:
+      #      CV_DATA_JS_CONTENT:
+      #        description: "Base64 encoded CV data"
+      #        required: true
+      #      GITHUB_TOKEN:
+      #        description: "GitHub token"
+      #        required: true
+      CV_HOSTING_HOOK:
         description: "Hosting hook URL"
         required: true
 
@@ -55,4 +55,4 @@ jobs:
 
       - name: Trigger hosting hook
         if: success()
-        run: curl -X POST "${{ secrets.HOSTING_HOOK }}"
+        run: curl -X POST "${{ secrets.CV_HOSTING_HOOK }}"

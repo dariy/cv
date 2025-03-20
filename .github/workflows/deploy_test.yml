@@ -19,6 +19,4 @@ jobs:
       environment: 'test'
       source_branch: ${{ github.event_name == 'workflow_dispatch' && inputs.source_branch || 'develop' }}
     secrets:
-      CV_DATA_JS_CONTENT: ${{ secrets.CV_DATA_JS_CONTENT }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      HOSTING_HOOK: ${{ secrets.HOSTING_TEST_HOOK }}
+      CV_HOSTING_HOOK: ${{ secrets.HOSTING_TEST_HOOK }}

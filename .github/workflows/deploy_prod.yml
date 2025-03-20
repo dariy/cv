@@ -19,6 +19,4 @@ jobs:
       environment: 'prod'
       source_branch: ${{ github.event_name == 'workflow_dispatch' && inputs.source_branch || 'main' }}
     secrets:
-      CV_DATA_JS_CONTENT: ${{ secrets.CV_DATA_JS_CONTENT }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      HOSTING_HOOK: ${{ secrets.HOSTING_PROD_HOOK }}
+      CV_HOSTING_HOOK: ${{ secrets.HOSTING_PROD_HOOK }}
