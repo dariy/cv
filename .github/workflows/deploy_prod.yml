@@ -1,0 +1,24 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: 'Source branch'
+        required: true
+        default: 'main'
+        type: string
+
+jobs:
+  deploy-prod:
+    uses: ./.github/workflows/common.yml
+    with:
+      environment: 'prod'
+      source_branch: ${{ github.event_name == 'workflow_dispatch' && inputs.source_branch || 'main' }}
+    secrets:
+      CV_DATA_JS_CONTENT: ${{ secrets.CV_DATA_JS_CONTENT }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      HOSTING_HOOK: ${{ secrets.HOSTING_PROD_HOOK }}
