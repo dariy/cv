@@ -40,7 +40,7 @@ jobs:
         run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" | base64 -d > dist/data/cv.json
 
       - name: Push to build branch
-        uses: s0/git-publish-subdir-action@v2.7.0  # Specify exact version instead of develop
+        uses: s0/git-publish-subdir-action@v2.6.0  # Specify exact version instead of develop
         env:
           REPO: self
           BRANCH: ${{ vars.TARGET_BRANCH }}
