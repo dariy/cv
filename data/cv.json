@@ -1,0 +1,168 @@
+{
+  "name": "Alexei Darii",
+  "summary": {
+    "template": "Dedicated Software Developer with **theProfessionalYears** of&nbsp;experience, including leadership, seeking a&nbsp;long&#8209;term <strong>Senior Software Developer</strong> role in&nbsp;<a href='https://www.google.com/maps/place/Montreal'>Montréal</a> or&nbsp;remote. Proven ability to&nbsp;contribute significantly to&nbsp;complex projects, with a&nbsp;preference for a&nbsp;focused, stable development environment.",
+    "since": 2005
+  },
+  "contacts": {
+    "email": [
+      "net",
+      "darii",
+      "cv"
+    ],
+    "phone": [
+      "3",
+      "8",
+      "4",
+      "8",
+      "7",
+      "7",
+      "1",
+      "1",
+      "7",
+      "7"
+    ],
+    "cv": "https://cv.darii.net",
+    "location": {
+      "title": "Montréal, QC, Canada"
+    },
+    "links": [
+      {
+        "url": "https://github.com/dariy/cv",
+        "prefix": "GitHub: ",
+        "title": "dariy<i>/</i>cv"
+      },
+      {
+        "url": "https://www.linkedin.com/in/alexeidarii",
+        "prefix": "LinkedIn: ",
+        "title": "Alexei Darii"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "role": "Delivery Manager",
+      "company": {
+        "name": "EPAM Systems",
+        "url": "https://www.epam.com"
+      },
+      "location": {
+        "name": "Romania",
+        "url": "https://www.google.com/maps/place/Romania/"
+      },
+      "startDate": "2022-07",
+      "endDate": "2025-02",
+      "achievements": [
+        "Planned and assessed the migration of 50+ services from <a href='https://aws.amazon.com/'>AWS</a> to <a href='https://azure.microsoft.com/'>Azure</a>.",
+        "Achieved a 12x performance increase via architectural improvements.",
+        "Gained 5x <a href='https://en.wikipedia.org/wiki/Software_quality_assurance'>QA</a> productivity boost by developing an integration test engine.",
+        "Migrated <a href='https://learn.microsoft.com/en-us/previous-versions/aspnet/t745kdsh(v=vs.100)'>ASMX services</a> to <a href='https://learn.microsoft.com/en-us/aspnet/core/web-api/'>ASP.NET WebAPI</a>, enhancing scalability."
+      ]
+    },
+    {
+      "role": "Lead Software Developer",
+      "company": {
+        "name": "EPAM Systems",
+        "url": "https://www.epam.com"
+      },
+      "location": {
+        "name": "Ukraine",
+        "url": "https://www.google.com/maps/place/Ukraine/"
+      },
+      "startDate": "2019-03",
+      "endDate": "2022-06",
+      "achievements": [
+        "Led the technical design and implementation of <a href='https://cloud.google.com/learn/what-is-microservices-architecture'>a microservices architecture</a>, resolving critical performance and availability issues.",
+        "Implemented key <a href='https://en.wikipedia.org/wiki/CI/CD'>CI/CD</a> pipelines and code review processes, enhancing team efficiency and software quality."
+      ]
+    },
+    {
+      "role": "Senior Software Developer",
+      "company": {
+        "name": "EPAM Systems",
+        "url": "https://www.epam.com"
+      },
+      "location": {
+        "name": "Belarus",
+        "url": "https://www.google.com/maps/place/Belarus/"
+      },
+      "startDate": "2018-02",
+      "endDate": "2019-02",
+      "achievements": [
+        "Enhanced manufacturing data management through database migration and modernized <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> infrastructure.",
+        "Delivered a refactored <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> orchestrator, including an orchestrator with 85% unit test coverage, robust monitoring <a href='https://prometheus.io/'>Prometheus</a>, <a href='https://grafana.com/'>Grafana</a>), and a scalable configuration service <a href='https://learn.microsoft.com/en-us/aspnet/core/web-api/'>ASP.NET WebAPI</a>, <a href='https://en.wikipedia.org/wiki/CI/CD'>CI/CD</a>).",
+        "Developed a customer onboarding portal (<a href='https://en.wikipedia.org/wiki/ASP.NET_MVC'>ASP.NET MVC</a>)."
+      ]
+    },
+    {
+      "role": "Senior Software Developer",
+      "company": {
+        "name": "Arkadium",
+        "url": "https://www.arkadium.com"
+      },
+      "location": {
+        "name": "US remote"
+      },
+      "startDate": "2017-02",
+      "endDate": "2017-12",
+      "achievements": [
+        "Developed a waterfall system for video ad providers, migrated analytics SDKs for <a href='https://en.wikipedia.org/wiki/Windows_8'>Win8</a> titles, resolved numerous player-reported crashes and UI issues, and collaborated directly with Microsoft engineers on feature requirements and technical solutions."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Bachelor of Science in Applied Informatics",
+      "startDate": "2007-09",
+      "endDate": "2011-06",
+      "place": "South Ural State University",
+      "additionalInfo": [
+        "Diploma with honors"
+      ]
+    }
+  ],
+  "expertise": [
+    {
+      "title": "Main areas",
+      "skills": [
+        "<a href='https://docs.microsoft.com/en-us/dotnet/'>.NET</a> and <a href='https://en.wikipedia.org/wiki/C_Sharp_(programming_language)'>C#</a> since 2005",
+        "<a href='https://en.wikipedia.org/wiki/On-premises_software'>On-premises solutions</a>",
+        "Clouds (<a href='https://cloud.google.com/'>GCP</a>, <a href='https://azure.microsoft.com/'>Azure</a>, <a href='https://aws.amazon.com/'>AWS</a>)"
+      ]
+    },
+    {
+      "title": "Side areas",
+      "skills": [
+        "<a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript'>JavaScript</a>",
+        "<a href='https://en.wikipedia.org/wiki/Smalltalk'>Smalltalk</a> (<a href='https://pharo.org/'>Pharo</a>)",
+        "<a href='https://www.python.org/'>Python</a>",
+        "<a href='https://cloud.google.com/learn/certification/data-engineer'>Data Engineering</a>",
+        "<a href='https://en.wikipedia.org/wiki/Video_game_development'>GameDev</a> (<a href='https://en.wikipedia.org/wiki/XNA'>XNA</a>, <a href='https://unity.com/'>Unity</a>, <a href='https://learn.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide'>UWP</a>)",
+        "<a href='https://en.wikipedia.org/wiki/LAMP_(software_bundle)'>LAMP</a> (<a href='https://en.wikipedia.org/wiki/Linux'>Linux</a>, <a href='https://en.wikipedia.org/wiki/Apache_HTTP_Server'>Apache</a>, <a href='https://en.wikipedia.org/wiki/MySQL'>MySQL</a>, <a href='https://en.wikipedia.org/wiki/PHP'>PHP</a>)"
+      ]
+    },
+    {
+      "title": "Certifications",
+      "skills": [
+        "Google: <a href='https://cloud.google.com/learn/certification/data-engineer'>GCP Professional Data Engineer</a>, 2018"
+      ]
+    },
+    {
+      "title": "Courses",
+      "skills": [
+        "EPAM: Solution Architecture School",
+        "<a href='https://www.coursera.org/account/accomplishments/specialization/LT75PFVSR9N6'>Coursera: Data Engineering, Big Data and ML on GCP</a>"
+      ]
+    },
+    {
+      "title": "Languages",
+      "skills": [
+        "Russian (native)",
+        "English (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>B2+ CEFR</a>)",
+        "Ukrainian",
+        "Romanian (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>A2 CEFR</a>)",
+        "French (beginner)"
+      ]
+    }
+  ]
+}
