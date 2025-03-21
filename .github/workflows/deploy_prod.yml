@@ -2,8 +2,11 @@ name: Deploy to Production
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+    paths-ignore: # Add paths to ignore
+      - '**.md'
+      - '.gitignore'
+      - '.editorconfig'
   workflow_dispatch:
     inputs:
       source_branch:
@@ -17,7 +20,5 @@ jobs:
     uses: ./.github/workflows/common.yml
     with:
       environment: 'prod'
-      source_branch: ${{ github.event_name == 'workflow_dispatch' && inputs.source_branch || 'main' }}
-    secrets:
-      CV_HOSTING_HOOK: ${{ secrets.HOSTING_PROD_HOOK }}
-      CV_DATA_JS_CONTENT: ${{ secrets.CV_DATA_JS_CONTENT }}
+      source_branch: ${{ github.event_name == 'workflow_dispatch' && inputs.source_branch || vars.DEFAULT_SOURCE_BRANCH }}
+    secrets: inherit    # Simplify secrets passing
