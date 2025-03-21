@@ -1,0 +1,23 @@
+name: Deploy to Test
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: 'Source branch'
+        required: true
+        default: 'develop'
+        type: string
+
+jobs:
+  deploy-test:
+    uses: ./.github/workflows/common.yml
+    with:
+      environment: 'test'
+      source_branch: ${{ github.event_name == 'workflow_dispatch' && inputs.source_branch || 'develop' }}
+    secrets:
+      CV_HOSTING_HOOK: ${{ secrets.HOSTING_TEST_HOOK }}
+      CV_DATA_JS_CONTENT: ${{ secrets.CV_DATA_JS_CONTENT }}
