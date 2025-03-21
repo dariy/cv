@@ -12,9 +12,9 @@ on:
         required: true
         type: string
     secrets:
-      #      CV_DATA_JS_CONTENT:
-      #        description: "Base64 encoded CV data"
-      #        required: true
+      CV_DATA_JS_CONTENT:
+        description: "Base64 encoded CV data"
+        required: true
       #      GITHUB_TOKEN:
       #        description: "GitHub token"
       #        required: true
