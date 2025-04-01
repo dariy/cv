@@ -328,6 +328,10 @@ main a:visited {
         padding: 0;
     }
 
+    .main-container {
+        background-color: transparent !important;
+    }
+
     .web {
         display: none;
     }
