@@ -17,10 +17,14 @@
     --font-weight-bold: 700;
 
     /* Layout */
-    --max-width: 48rem;
-    --main-width: 34rem;
-    --sidebar-width: 14rem;
+    --max-width: 90%;
+    --main-width: 70%;
+    --sidebar-width: 30%;
     --spacing: 1rem;
+
+    /* Breakpoints */
+    --mobile-breakpoint: 768px;
+    --small-mobile-breakpoint: 480px;
 }
 
 /* Reset */
@@ -115,7 +119,10 @@ header,
 main,
 footer {
     width: var(--max-width);
+    max-width: 48rem;
     margin: 0 auto;
+    padding-left: var(--spacing);
+    padding-right: var(--spacing);
 }
 
 /* Header */
@@ -126,6 +133,7 @@ header {
     justify-content: space-between;
     align-items: flex-start;
     padding: var(--spacing) 0;
+    gap: var(--spacing);
 }
 
 header h1,
@@ -154,16 +162,18 @@ footer a:hover {
 /* Main Container */
 .main-container {
     background-color: var(--color-light);
+    width: 100%;
 }
 
 main {
     max-width: var(--max-width);
-    padding: 0 0 var(--spacing) 0;
+    padding: var(--spacing) 0 var(--spacing) 0;
     color: var(--color-dark);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    gap: var(--spacing);
 }
 
 main h3 {
@@ -291,6 +301,76 @@ main a:visited {
 @media screen {
     .print {
         display: none;
+    }
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    :root {
+        --max-width: 95%;
+        --font-size-base: 0.9rem;
+        --font-size-large: 1.1rem;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    section.summary,
+    section.contacts,
+    section.experience,
+    section.education,
+    section.skills,
+    section.additional-info {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    section.contacts {
+        margin-top: 1rem;
+    }
+
+    /* Improve touch targets for mobile */
+    a, .theEmail a, .theEmailRequest {
+        padding: 0.3rem 0;
+        display: inline-block;
+    }
+
+    section.contacts li {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --font-size-base: 0.85rem;
+        --font-size-h1: 1.3rem;
+        --font-size-h2: 1rem;
+        --spacing: 0.7rem;
+    }
+
+    header h1,
+    header h2 {
+        height: auto;
+    }
+
+    /* Adjust experience section for very small screens */
+    main h3 {
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    /* Ensure proper padding on small screens */
+    header, main, footer {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 }
 
