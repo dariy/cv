@@ -60,3 +60,4 @@ jobs:
 
       - name: Deploy to hosting
         run: rsync -avz --delete -e "ssh -p ${{ secrets.DEPLOY_PORT }}" dist/ ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
+
