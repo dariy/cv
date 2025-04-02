@@ -11,29 +11,24 @@ on:
         description: "Source branch name"
         required: true
         type: string
-    secrets:
-      CV_DATA_JS_CONTENT:
-        description: "Base64 encoded CV data"
-        required: true
-      #      GITHUB_TOKEN:
-      #        description: "GitHub token"
-      #        required: true
-      CV_HOSTING_HOOK:
-        description: "Hosting hook URL"
-        required: true
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     name: Build and Deploy
+    environment: ${{ inputs.environment }}
     steps:
       - name: git-checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4    # Update from v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4  # Add Node.js setup with caching
         with:
-          ref: ${{ inputs.source_branch }}
+          node-version-file: 'package.json'
+          cache: 'npm'
 
       - name: Install all dependencies
-        run: npm install
+        run: npm ci                  # Use ci instead of install for cleaner, reproducible builds
 
       - name: Build
         run: npm run build
@@ -45,14 +40,24 @@ jobs:
         run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" | base64 -d > dist/data/cv.json
 
       - name: Push to build branch
-        uses: s0/git-publish-subdir-action@develop
+        uses: s0/git-publish-subdir-action@v2.6.0  # Specify exact version instead of develop
         env:
           REPO: self
-          BRANCH: ${{ inputs.environment == 'test' && 'build-test' || 'build' }}
+          BRANCH: ${{ vars.TARGET_BRANCH }}
           FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "Build: ({sha}) {msg} [env:${{ inputs.environment }} from:${{ inputs.source_branch }}]"
 
-      - name: Trigger hosting hook
-        if: success()
-        run: curl -X POST "${{ secrets.CV_HOSTING_HOOK }}"
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2.7.0  # Specify exact version
+        with:
+          key: ${{ secrets.DEPLOY_KEY }}
+          known_hosts: unnecessary
+          if_key_exists: replace
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to hosting
+        run: rsync -avz --delete -e "ssh -p ${{ secrets.DEPLOY_PORT }}" dist/ ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
+
