@@ -13,13 +13,14 @@
     --font-size-base: 0.8rem;
     --font-size-large: 1rem;
     --font-size-h1: 1.5rem;
-    --font-size-h2: 1.1rem;
+    --font-size-h2: 1.2rem;
+    --font-size-h3: 1rem;
     --font-weight-bold: 700;
 
     /* Layout */
-    --max-width: 90%;
-    --main-width: 70%;
-    --sidebar-width: 30%;
+    --max-width: 48rem;
+    --main-width: 34rem;
+    --sidebar-width: 14rem;
     --spacing: 1rem;
 
     /* Breakpoints */
@@ -103,6 +104,11 @@ h2 {
     padding: 0.8rem 0 0 0;
 }
 
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+}
+
 i {
     color: var(--color-highlight-dark);
     font-style: normal;
@@ -119,10 +125,7 @@ header,
 main,
 footer {
     width: var(--max-width);
-    max-width: 48rem;
     margin: 0 auto;
-    padding-left: var(--spacing);
-    padding-right: var(--spacing);
 }
 
 /* Header */
@@ -133,7 +136,6 @@ header {
     justify-content: space-between;
     align-items: flex-start;
     padding: var(--spacing) 0;
-    gap: var(--spacing);
 }
 
 header h1,
@@ -162,31 +164,35 @@ footer a:hover {
 /* Main Container */
 .main-container {
     background-color: var(--color-light);
-    width: 100%;
 }
 
 main {
     max-width: var(--max-width);
-    padding: var(--spacing) 0 var(--spacing) 0;
+    padding: 0 0 var(--spacing) 0;
     color: var(--color-dark);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    gap: var(--spacing);
 }
 
 main h3 {
     padding: 0.3rem 0 0 0;
 }
 
+
 main ul {
     list-style-type: disc;
+    margin-left: 0.5rem;
     padding-left: var(--spacing);
     padding-bottom: 0.3rem;
 }
 
 /* Sections */
+section {
+    padding: 0 var(--spacing);
+}
+
 section.summary {
     width: var(--main-width);
 }
@@ -194,12 +200,11 @@ section.summary {
 section.contacts {
     min-width: var(--sidebar-width);
     max-width: var(--sidebar-width);
-    padding-left: 0.5rem;
 }
 
 section.contacts ul {
     list-style: none;
-    padding-left: 0;
+    /*padding-left: 0;*/
 }
 
 section.contacts li {
@@ -209,14 +214,12 @@ section.contacts li {
 section.experience,
 section.education {
     width: var(--main-width);
-    padding-right: 0.5rem;
 }
 
 section.skills,
 section.additional-info {
     min-width: var(--sidebar-width);
     max-width: var(--sidebar-width);
-    padding-left: 0.5rem;
 }
 
 /* Footer */
@@ -307,39 +310,49 @@ main a:visited {
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
     :root {
-        --max-width: 95%;
-        --font-size-base: 0.9rem;
-        --font-size-large: 1.1rem;
+        --max-width: 100%;
+        --main-width: 100%;
+        --sidebar-width: 100%;
+        /*--font-size-base: 0.9rem;*/
+        /*--font-size-large: 1.1rem;*/
     }
 
     header {
         flex-direction: column;
+        gap: var(--spacing);
     }
 
-    section.summary,
-    section.contacts,
-    section.experience,
-    section.education,
-    section.skills,
-    section.additional-info {
+    section {
         width: 100%;
         min-width: 100%;
         max-width: 100%;
-        padding-left: 0;
-        padding-right: 0;
     }
 
     main {
         flex-direction: column;
+        gap: var(--spacing);
+        /*padding: var(--spacing) 0;*/
+    }
+
+    main h3 {
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    main h3 i {
+        display: table-column;
+    }
+
+    main h3 a:first-of-type::before {
+        content: '@ ';
     }
 
     section.contacts {
-        margin-top: 1rem;
+        margin-top: 0.5rem;
     }
 
     /* Improve touch targets for mobile */
     a, .theEmail a, .theEmailRequest {
-        padding: 0.3rem 0;
         display: inline-block;
     }
 
@@ -350,29 +363,23 @@ main a:visited {
 
 @media screen and (max-width: 480px) {
     :root {
-        --font-size-base: 0.85rem;
-        --font-size-h1: 1.3rem;
-        --font-size-h2: 1rem;
-        --spacing: 0.7rem;
+        /*--font-size-base: 0.85rem;*/
+        /*--font-size-h1: 1.3rem;*/
+        /*--font-size-h2: 1.2rem;*/
+        /*--font-size-h3: 1.1rem;*/
+        /*--spacing: 0.7rem;*/
     }
 
-    header h1,
-    header h2 {
-        height: auto;
-    }
+/*    main ul {*/
+/*        margin-left: 1em;*/
+/*    }*/
 
-    /* Adjust experience section for very small screens */
-    main h3 {
-        word-break: break-word;
-        hyphens: auto;
-    }
-
-    /* Ensure proper padding on small screens */
-    header, main, footer {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-}
+/*    !* Ensure proper padding on small screens *!*/
+/*    header, main, footer {*/
+/*        padding-left: 0.5rem;*/
+/*        padding-right: 0.5rem;*/
+/*    }*/
+/*}*/
 
 @media print {
     body,
