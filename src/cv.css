@@ -13,7 +13,8 @@
     --font-size-base: 0.8rem;
     --font-size-large: 1rem;
     --font-size-h1: 1.5rem;
-    --font-size-h2: 1.1rem;
+    --font-size-h2: 1.2rem;
+    --font-size-h3: 1rem;
     --font-weight-bold: 700;
 
     /* Layout */
@@ -21,6 +22,9 @@
     --main-width: 34rem;
     --sidebar-width: 14rem;
     --spacing: 1rem;
+
+    /* Breakpoints */
+    --mobile-breakpoint: 768px;
 }
 
 /* Reset */
@@ -99,6 +103,11 @@ h2 {
     padding: 0.8rem 0 0 0;
 }
 
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+}
+
 i {
     color: var(--color-highlight-dark);
     font-style: normal;
@@ -170,13 +179,19 @@ main h3 {
     padding: 0.3rem 0 0 0;
 }
 
+
 main ul {
     list-style-type: disc;
+    margin-left: 0.5rem;
     padding-left: var(--spacing);
     padding-bottom: 0.3rem;
 }
 
 /* Sections */
+section:nth-child(odd) {
+    padding: 0 var(--spacing);
+}
+
 section.summary {
     width: var(--main-width);
 }
@@ -184,12 +199,10 @@ section.summary {
 section.contacts {
     min-width: var(--sidebar-width);
     max-width: var(--sidebar-width);
-    padding-left: 0.5rem;
 }
 
 section.contacts ul {
     list-style: none;
-    padding-left: 0;
 }
 
 section.contacts li {
@@ -199,19 +212,17 @@ section.contacts li {
 section.experience,
 section.education {
     width: var(--main-width);
-    padding-right: 0.5rem;
 }
 
 section.skills,
 section.additional-info {
     min-width: var(--sidebar-width);
     max-width: var(--sidebar-width);
-    padding-left: 0.5rem;
 }
 
 /* Footer */
 footer {
-    padding: var(--spacing) 0;
+    padding: var(--spacing);
     text-align: left;
 }
 
@@ -294,7 +305,71 @@ main a:visited {
     }
 }
 
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    :root {
+        --max-width: 100%;
+        --main-width: 100%;
+        --sidebar-width: 100%;
+        /*--font-size-base: 0.9rem;*/
+        /*--font-size-large: 1.1rem;*/
+    }
+
+    header {
+        flex-direction: column;
+        /*gap: var(--spacing);*/
+    }
+
+    section {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    section:nth-child(even) {
+        padding: 0 var(--spacing);
+    }
+
+
+    main {
+        flex-direction: column;
+    }
+
+    main h3 {
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    main h3 i {
+        display: table-column;
+    }
+
+    main h3 a:first-of-type::before {
+        content: '@ ';
+    }
+
+    section.contacts {
+        margin-top: 0.5rem;
+    }
+
+    /* Improve touch targets for mobile */
+    a, .theEmail a, .theEmailRequest {
+        display: inline-block;
+    }
+
+    section.contacts li {
+        margin-bottom: 0.5rem;
+    }
+}
+
 @media print {
+    :root {
+        --font-size-base: 0.8rem;
+        --font-size-large: 1rem;
+        --spacing: 0.5rem;
+    }
+
     body,
     a,
     .thePhone::before,
@@ -328,6 +403,10 @@ main a:visited {
         padding: 0;
     }
 
+    section.skills {
+        padding-left: 0.5rem;
+    }
+
     .main-container {
         background-color: transparent;
     }
@@ -337,7 +416,7 @@ main a:visited {
     }
 
     footer {
-        padding: 0.5rem 0;
+        padding: 0.5rem;
     }
 
     .print {
