@@ -25,7 +25,6 @@
 
     /* Breakpoints */
     --mobile-breakpoint: 768px;
-    --small-mobile-breakpoint: 480px;
 }
 
 /* Reset */
@@ -189,7 +188,7 @@ main ul {
 }
 
 /* Sections */
-section {
+section:nth-child(odd) {
     padding: 0 var(--spacing);
 }
 
@@ -204,7 +203,6 @@ section.contacts {
 
 section.contacts ul {
     list-style: none;
-    /*padding-left: 0;*/
 }
 
 section.contacts li {
@@ -224,7 +222,7 @@ section.additional-info {
 
 /* Footer */
 footer {
-    padding: var(--spacing) 0;
+    padding: var(--spacing);
     text-align: left;
 }
 
@@ -319,19 +317,23 @@ main a:visited {
 
     header {
         flex-direction: column;
-        gap: var(--spacing);
+        /*gap: var(--spacing);*/
     }
 
     section {
         width: 100%;
         min-width: 100%;
         max-width: 100%;
+        padding: 0;
     }
+
+    section:nth-child(even) {
+        padding: 0 var(--spacing);
+    }
+
 
     main {
         flex-direction: column;
-        gap: var(--spacing);
-        /*padding: var(--spacing) 0;*/
     }
 
     main h3 {
@@ -361,27 +363,13 @@ main a:visited {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media print {
     :root {
-        /*--font-size-base: 0.85rem;*/
-        /*--font-size-h1: 1.3rem;*/
-        /*--font-size-h2: 1.2rem;*/
-        /*--font-size-h3: 1.1rem;*/
-        /*--spacing: 0.7rem;*/
+        --font-size-base: 0.8rem;
+        --font-size-large: 1rem;
+        --spacing: 0.5rem;
     }
 
-/*    main ul {*/
-/*        margin-left: 1em;*/
-/*    }*/
-
-/*    !* Ensure proper padding on small screens *!*/
-/*    header, main, footer {*/
-/*        padding-left: 0.5rem;*/
-/*        padding-right: 0.5rem;*/
-/*    }*/
-/*}*/
-
-@media print {
     body,
     a,
     .thePhone::before,
@@ -415,6 +403,10 @@ main a:visited {
         padding: 0;
     }
 
+    section.skills {
+        padding-left: 0.5rem;
+    }
+
     .main-container {
         background-color: transparent;
     }
@@ -424,7 +416,7 @@ main a:visited {
     }
 
     footer {
-        padding: 0.5rem 0;
+        padding: 0.5rem;
     }
 
     .print {
