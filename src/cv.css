@@ -250,6 +250,13 @@ section:nth-child(odd) {
 
 section.summary {
     width: var(--main-width);
+    position: relative;
+}
+
+section.summary .theme-toggle {
+    position: absolute;
+    top: -0.1rem; /* Align with h1 */
+    right: 0.5rem;
 }
 
 section.contacts {
@@ -288,6 +295,13 @@ footer p {
     gap: 0.5rem;
 }
 
+/* For mobile, ensure the theme toggle stays in position */
+@media screen and (max-width: 480px) {
+    section.summary .theme-toggle {
+        right: var(--spacing);
+    }
+}
+
 /* ==========================================================================
    Typography & Text Styles
    ========================================================================== */
@@ -310,8 +324,7 @@ section.summary strong {
     background: none;
     border: none;
     cursor: pointer;
-    margin-left: 1rem;
-    padding: 0.2rem 0.5rem;
+    padding: 0.07rem 0.2rem;
     font-size: 1.2rem;
     border-radius: 0.3rem;
     transition: background-color 0.3s ease;
@@ -332,7 +345,7 @@ section.summary strong {
 .theme-toggle::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
@@ -346,13 +359,14 @@ section.summary strong {
     transition: opacity 0.2s, visibility 0.2s;
     pointer-events: none;
     z-index: 10;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .theme-toggle:hover::after {
     opacity: 1;
     visibility: visible;
 }
+
 a {
     color: var(--color-header-text);
 }
@@ -435,13 +449,7 @@ main a:visited {
 
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
-    /* Adjust tooltip position for mobile */
-    .theme-toggle::after {
-        bottom: auto;
-        top: 100%;
-        margin-bottom: 0;
-        margin-top: 0.5rem;
-    }
+    /* No need to adjust tooltip position for mobile since it's already below */
     :root {
         --max-width: 100%;
         --main-width: 100%;
