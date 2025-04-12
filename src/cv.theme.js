@@ -6,192 +6,184 @@
  * 3. Manual toggle via UI button
  */
 
-/**
- * Theme options
- * @readonly
- * @enum {string}
- */
-export const THEMES = Object.freeze({
-    LIGHT: 'light',
-    DARK: 'dark',
-    SYSTEM: 'system'
-});
+class ThemeProvider {
+    static StorageKey = "cv-theme-preference";
 
-/**
- * Local storage key for theme preference
- * @type {string}
- */
-const THEME_STORAGE_KEY = 'cv-theme-preference';
+    /** @type {Readonly<Theme>} */
+    light;
+    /** @type {Readonly<Theme>} */
+    dark;
+    /** @type {Readonly<Theme>} */
+    system;
 
-/**
- * Theme icons for toggle button
- * @readonly
- * @enum {string}
- */
-const THEME_ICONS = Object.freeze({
-    [THEMES.LIGHT]: '☀️', // sun
-    [THEMES.DARK]: '🌙', // moon
-    [THEMES.SYSTEM]: '🌓' // half moon
-});
-
-/**
- * Tooltip text for each theme state
- * @readonly
- * @enum {string}
- */
-const THEME_TOOLTIPS = Object.freeze({
-    [THEMES.LIGHT]: 'Currently using light mode. Click to switch to dark mode.',
-    [THEMES.DARK]: 'Currently using dark mode. Click to switch to system theme.',
-    [THEMES.SYSTEM]: 'Currently using system theme. Click to switch to light mode.'
-});
-
-/**
- * Theme manager class
- */
-export class ThemeManager {
-    /**
-     * Initialize theme manager
-     */
     constructor() {
-        this.toggleButton = document.getElementById('theme-toggle');
-        this.toggleIcon = this.toggleButton?.querySelector('.theme-toggle-icon');
-        this.currentTheme = this.getStoredTheme() || THEMES.SYSTEM;
+        if (this.light) return;
 
-        this.initTheme();
-        this.setupEventListeners();
-    }
+        const light = new Theme("light", "☀️");
+        const dark = new Theme("dark", "🌙");
+        const system = new Theme("system", "🌓");
 
-    /**
-     * Initialize theme based on stored preference or system preference
-     */
-    initTheme() {
-        if (this.currentTheme === THEMES.SYSTEM) {
-            this.applySystemTheme();
-        } else {
-            this.applyTheme(this.currentTheme);
-        }
+        // Set up theme cycle
+        light.nextTheme = dark;
+        dark.nextTheme = system;
+        system.nextTheme = light;
 
-        this.updateToggleIcon();
-    }
-
-    /**
-     * Set up event listeners for theme switching
-     */
-    setupEventListeners() {
-        // Toggle button click
-        if (this.toggleButton) {
-            this.toggleButton.addEventListener('click', () => this.toggleTheme());
-        }
-
-        // System preference change
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (this.currentTheme === THEMES.SYSTEM) {
-                this.applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT, false);
-            }
-        });
-    }
-
-    /**
-     * Toggle between light, dark, and system themes
-     */
-    toggleTheme() {
-        switch (this.currentTheme) {
-            case THEMES.LIGHT:
-                this.setTheme(THEMES.DARK);
-                break;
-            case THEMES.DARK:
-                this.setTheme(THEMES.SYSTEM);
-                break;
-            case THEMES.SYSTEM:
-            default:
-                this.setTheme(THEMES.LIGHT);
-                break;
-        }
-    }
-
-    /**
-     * Set theme and store preference
-     * @param {string} theme - Theme to set
-     */
-    setTheme(theme) {
-        this.currentTheme = theme;
-        this.storeTheme(theme);
-
-        if (theme === THEMES.SYSTEM) {
-            this.applySystemTheme();
-        } else {
-            this.applyTheme(theme);
-        }
-
-        this.updateToggleIcon();
-    }
-
-    /**
-     * Apply theme based on system preference
-     */
-    applySystemTheme() {
-        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        this.applyTheme(isDarkMode ? THEMES.DARK : THEMES.LIGHT, false);
-    }
-
-    /**
-     * Apply theme to document
-     * @param {string} theme - Theme to apply
-     * @param {boolean} [storeAttribute=true] - Whether to store the theme attribute
-     */
-    applyTheme(theme, storeAttribute = true) {
-        if (storeAttribute) {
-            document.documentElement.setAttribute('data-theme', theme);
-        } else {
-            // For system preference, we don't set the attribute to allow CSS media query to work
-            document.documentElement.removeAttribute('data-theme');
-        }
-    }
-
-    /**
-     * Update toggle button icon and tooltip based on current theme
-     */
-    updateToggleIcon() {
-        if (this.toggleIcon && this.toggleButton) {
-            // Update icon
-            this.toggleIcon.textContent = THEME_ICONS[this.currentTheme];
-
-            // Update button aria-label for accessibility
-            const themeLabels = {
-                [THEMES.LIGHT]: 'Switch to dark mode',
-                [THEMES.DARK]: 'Switch to system theme',
-                [THEMES.SYSTEM]: 'Switch to light mode'
-            };
-
-            this.toggleButton.setAttribute('aria-label', themeLabels[this.currentTheme]);
-
-            // Update tooltip
-            this.toggleButton.setAttribute('data-tooltip', THEME_TOOLTIPS[this.currentTheme]);
-        }
+        // Freeze all themes
+        this.light = Object.freeze(light);
+        this.dark = Object.freeze(dark);
+        this.system = Object.freeze(system);
     }
 
     /**
      * Get stored theme preference
-     * @returns {string|null} Stored theme or null if not set
+     * @returns {Readonly<Theme>} Stored theme or system theme if not set
      */
-    getStoredTheme() {
+    getTheme() {
         try {
-            return localStorage.getItem(THEME_STORAGE_KEY);
+            const name = localStorage.getItem(ThemeProvider.StorageKey);
+            return this[name] ?? this.system;
         } catch (error) {
-            console.warn('Failed to access localStorage:', error);
-            return null;
+            console.warn("Failed to access localStorage:", error);
+            return this.system;
         }
     }
 
     /**
      * Store theme preference
-     * @param {string} theme - Theme to store
+     * @param {Readonly<Theme>} theme - Theme to store
      */
     storeTheme(theme) {
         try {
-            localStorage.setItem(THEME_STORAGE_KEY, theme);
+            localStorage.setItem(ThemeProvider.StorageKey, theme.name);
         } catch (error) {
-            console.warn('Failed to store theme preference:', error);
+            console.warn("Failed to store theme preference:", error);
         }
+    }
+
+    /**
+     * Get theme based on dark mode preference
+     * @param {boolean} isDarkMode
+     * @returns {Readonly<Theme>}
+     */
+    getThemeByMode(isDarkMode) {
+        return isDarkMode ? this.dark : this.light;
+    }
+
+    /**
+     * Check if theme is system theme
+     * @param {Readonly<Theme>} theme
+     * @returns {boolean}
+     */
+    isSystem(theme) {
+        return theme === this.system;
+    }
+}
+
+class Theme {
+    /** @type {Theme | null} */
+    nextTheme = null;
+
+    /**
+     * Create a new theme
+     * @param {string} name - Theme name
+     * @param {string} icon - Theme icon
+     */
+    constructor(name, icon) {
+        this.name = name;
+        this.icon = icon;
+    }
+
+    /**
+     * Get aria label for theme toggle button
+     * @returns {string}
+     */
+    getAreaLabel() {
+        return `Switch to ${this.nextTheme?.name} theme`;
+    }
+
+    /**
+     * Get tooltip text for theme toggle button
+     * @returns {string}
+     */
+    getTooltip() {
+        return `Currently using ${this.name} mode. Click to switch to ${this.nextTheme?.name} mode.`;
+    }
+}
+
+/**
+ * Theme manager class
+ */
+export class ThemeManager {
+    /** @type {HTMLElement | null} */
+    #toggleButton;
+    /** @type {HTMLElement | null} */
+    #toggleIcon;
+    /** @type {ThemeProvider} */
+    #themeProvider;
+    /** @type {Readonly<Theme>} */
+    #currentTheme;
+
+    constructor() {
+        this.#toggleButton = document.getElementById("theme-toggle");
+        this.#toggleIcon = this.#toggleButton?.querySelector(".theme-toggle-icon");
+        this.#themeProvider = new ThemeProvider();
+        this.#currentTheme = this.#themeProvider.getTheme();
+
+        this.#initTheme();
+        this.#setupEventListeners();
+    }
+
+    #initTheme() {
+        if (this.#themeProvider.isSystem(this.#currentTheme)) {
+            this.#applySystemTheme();
+        } else {
+            this.#applyTheme(this.#currentTheme);
+        }
+
+        this.#updateToggleIcon();
+    }
+
+    #setupEventListeners() {
+        this.#toggleButton?.addEventListener("click", () => {
+            if (!this.#currentTheme.nextTheme) return;
+
+            this.#currentTheme = this.#currentTheme.nextTheme;
+            this.#themeProvider.storeTheme(this.#currentTheme);
+            this.#initTheme();
+        });
+
+        const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        darkModeQuery.addEventListener("change", (e) => {
+            if (this.#themeProvider.isSystem(this.#currentTheme)) {
+                this.#applyThemeByMode(e.matches, false);
+            }
+        });
+    }
+
+    #applySystemTheme() {
+        const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        this.#applyThemeByMode(isDarkMode, false);
+    }
+
+    #applyThemeByMode(isDarkMode, storeAttribute) {
+        const theme = this.#themeProvider.getThemeByMode(isDarkMode);
+        this.#applyTheme(theme, storeAttribute);
+    }
+
+    #applyTheme(theme, storeAttribute = true) {
+        if (storeAttribute) {
+            document.documentElement.setAttribute("data-theme", theme.name);
+        } else {
+            // For system preference, we don't set the attribute to allow CSS media query to work
+            document.documentElement.removeAttribute("data-theme");
+        }
+    }
+
+    #updateToggleIcon() {
+        if (!this.#toggleIcon || !this.#toggleButton) return;
+
+        this.#toggleIcon.textContent = this.#currentTheme.icon;
+        this.#toggleButton.setAttribute("aria-label", this.#currentTheme.getAreaLabel());
+        this.#toggleButton.setAttribute("data-tooltip", this.#currentTheme.getTooltip());
     }
 }
