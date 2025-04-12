@@ -449,7 +449,6 @@ main a:visited {
 
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
-    /* No need to adjust tooltip position for mobile since it's already below */
     :root {
         --max-width: 100%;
         --main-width: 100%;
@@ -515,7 +514,6 @@ main a:visited {
         --color-header-bg: white;
         --color-highlight-primary: black;
         --color-highlight-secondary: black;
-
         --font-size-base: 0.8rem;
         --font-size-large: 1rem;
         --spacing: 0.5rem;
@@ -526,7 +524,7 @@ main a:visited {
     .theme-toggle::after {
         display: none;
     }
-
+  
     body,
     a,
     .thePhone::before,
