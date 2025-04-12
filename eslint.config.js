@@ -7,7 +7,7 @@ export default [
         // Browser environment configuration
         files: ["src/**/*.js"],
         languageOptions: {
-            ecmaVersion: 2020,
+            ecmaVersion: 2022,
             globals: globals.browser,
             sourceType: "module",
         },

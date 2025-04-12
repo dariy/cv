@@ -1,5 +1,6 @@
 import { dom, network } from "./cv.lib.js";
 import { CvBuilder } from "./cv.builder.js";
+import { ThemeManager } from "./cv.theme.js";
 
 /** @type {Readonly<{DATA_PATH: string, MAINTENANCE_MESSAGE: string}>} */
 const CONFIG = Object.freeze({
@@ -39,6 +40,7 @@ async function initializeCV() {
             return;
         }
         new CvBuilder().build(cvData);
+        new ThemeManager();
     } catch (error) {
         console.error("Failed to initialize CV:", error);
         showMaintenancePage();
