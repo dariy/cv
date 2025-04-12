@@ -2,11 +2,21 @@
    Reset & Base Styles
    ========================================================================== */
 :root {
-    /* Colors */
-    --color-dark: #333;
-    --color-light: aliceblue;
+    /* Theme Colors */
+    --color-text-dark: #333;
+    --color-text-light: aliceblue;
+    --color-bg-dark: #333;
+    --color-bg-light: aliceblue;
     --color-highlight-dark: #2b2;
     --color-highlight-light: #108010;
+
+    /* Default Light Theme */
+    --color-text: var(--color-text-dark);
+    --color-bg: var(--color-bg-light);
+    --color-header-bg: var(--color-bg-dark);
+    --color-header-text: var(--color-text-light);
+    --color-highlight-primary: var(--color-highlight-dark);
+    --color-highlight-secondary: var(--color-highlight-light);
 
     /* Typography */
     --font-family: "Verdana", "Arial";
@@ -25,6 +35,52 @@
 
     /* Breakpoints */
     --mobile-breakpoint: 768px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --color-text: var(--color-text-light);
+    --color-bg: var(--color-bg-dark);
+    --color-header-bg: #222;
+    --color-header-text: var(--color-text-light);
+    --color-highlight-primary: var(--color-highlight-dark);
+    --color-highlight-secondary: var(--color-highlight-light);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --color-text: var(--color-text-dark);
+    --color-bg: var(--color-bg-light);
+    --color-header-bg: var(--color-bg-dark);
+    --color-header-text: var(--color-text-light);
+    --color-highlight-primary: var(--color-highlight-dark);
+    --color-highlight-secondary: var(--color-highlight-light);
+}
+
+/* System Preference - Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --color-text: var(--color-text-light);
+        --color-bg: var(--color-bg-dark);
+        --color-header-bg: #222;
+        --color-header-text: var(--color-text-light);
+    }
+
+    /* Apply dark mode link styling for system preference */
+    :root:not([data-theme]) main a {
+        color: var(--color-highlight-primary);
+        text-decoration: none;
+    }
+
+    :root:not([data-theme]) main a:hover {
+        color: var(--color-highlight-secondary);
+        text-decoration: underline;
+    }
+
+    :root:not([data-theme]) main a:visited {
+        color: var(--color-highlight-primary);
+        text-decoration: underline !important;
+    }
 }
 
 /* Reset */
@@ -79,8 +135,8 @@ body {
     font-weight: 400;
     font-size: var(--font-size-base);
     line-height: 1.6;
-    color: var(--color-light);
-    background-color: var(--color-dark);
+    color: var(--color-header-text);
+    background-color: var(--color-header-bg);
 }
 
 /* ==========================================================================
@@ -109,12 +165,12 @@ h3 {
 }
 
 i {
-    color: var(--color-highlight-dark);
+    color: var(--color-highlight-primary);
     font-style: normal;
 }
 
 main i {
-    color: var(--color-highlight-light);
+    color: var(--color-highlight-secondary);
 }
 
 /* ==========================================================================
@@ -157,18 +213,18 @@ footer a {
 
 header a:hover,
 footer a:hover {
-    color: var(--color-highlight-dark);
+    color: var(--color-highlight-primary);
 }
 
 /* Main Container */
 .main-container {
-    background-color: var(--color-light);
+    background-color: var(--color-bg);
 }
 
 main {
     max-width: var(--max-width);
     padding: 0 0 var(--spacing) 0;
-    color: var(--color-dark);
+    color: var(--color-text);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -194,6 +250,13 @@ section:nth-child(odd) {
 
 section.summary {
     width: var(--main-width);
+    position: relative;
+}
+
+section.summary .theme-toggle {
+    position: absolute;
+    top: -0.1rem; /* Align with h1 */
+    right: 0.5rem;
 }
 
 section.contacts {
@@ -226,47 +289,126 @@ footer {
     text-align: left;
 }
 
+footer p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* For mobile, ensure the theme toggle stays in position */
+@media screen and (max-width: 480px) {
+    section.summary .theme-toggle {
+        right: var(--spacing);
+    }
+}
+
 /* ==========================================================================
    Typography & Text Styles
    ========================================================================== */
 .dates {
-    color: var(--color-dark);
+    color: var(--color-text);
     font-style: italic;
     padding-bottom: 0.3rem;
 }
 
 section.summary strong {
-    color: var(--color-highlight-dark);
+    color: var(--color-highlight-primary);
 }
 
 /* ==========================================================================
    Links & Interactive Elements
    ========================================================================== */
+
+/* Theme Toggle */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.07rem 0.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s ease;
+    color: var(--color-header-text);
+    position: relative;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--color-highlight-primary);
+    outline-offset: 2px;
+}
+
+/* Tooltip styling */
+.theme-toggle::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    pointer-events: none;
+    z-index: 10;
+    margin-top: 0.5rem;
+}
+
+.theme-toggle:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 a {
-    color: var(--color-light);
+    color: var(--color-header-text);
 }
 
 a:hover {
-    color: var(--color-highlight-light);
+    color: var(--color-highlight-secondary);
 }
 
 a:visited {
-    color: var(--color-light);
+    color: var(--color-header-text);
     text-decoration: underline;
 }
 
+/* Main links - Light mode (default) */
 main a {
-    color: var(--color-highlight-light);
+    color: var(--color-highlight-secondary);
     text-decoration: none;
 }
 
 main a:hover {
-    color: var(--color-highlight-dark);
+    color: var(--color-highlight-primary);
     text-decoration: underline;
 }
 
 main a:visited {
-    color: var(--color-dark);
+    color: var(--color-text);
+    text-decoration: underline !important;
+}
+
+/* Main links - Dark mode */
+[data-theme="dark"] main a {
+    color: var(--color-highlight-primary);
+    text-decoration: none;
+}
+
+[data-theme="dark"] main a:hover {
+    color: var(--color-highlight-secondary);
+    text-decoration: underline;
+}
+
+[data-theme="dark"] main a:visited {
+    color: var(--color-highlight-primary);
     text-decoration: underline !important;
 }
 
@@ -274,7 +416,7 @@ main a:visited {
 .thePhone::before,
 .theEmail::before {
     margin-right: 0.4rem;
-    color: var(--color-highlight-dark);
+    color: var(--color-highlight-primary);
 }
 
 .thePhone::before {
@@ -293,7 +435,7 @@ main a:visited {
 
 .theEmail a:hover,
 .theEmail a:hover .delimiter {
-    color: var(--color-highlight-dark);
+    color: var(--color-highlight-primary);
 }
 
 /* ==========================================================================
@@ -307,6 +449,7 @@ main a:visited {
 
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
+    /* No need to adjust tooltip position for mobile since it's already below */
     :root {
         --max-width: 100%;
         --main-width: 100%;
@@ -364,10 +507,24 @@ main a:visited {
 }
 
 @media print {
-    :root {
+    /* Reset theme variables for printing */
+    :root, [data-theme="dark"], [data-theme="light"] {
+        --color-text: black;
+        --color-bg: white;
+        --color-header-text: black;
+        --color-header-bg: white;
+        --color-highlight-primary: black;
+        --color-highlight-secondary: black;
+
         --font-size-base: 0.8rem;
         --font-size-large: 1rem;
         --spacing: 0.5rem;
+    }
+
+    /* Hide theme toggle and tooltip in print */
+    .theme-toggle,
+    .theme-toggle::after {
+        display: none;
     }
 
     body,
@@ -396,7 +553,7 @@ main a:visited {
 
     section.summary a {
         font-style: italic;
-        color: var(--color-dark);
+        color: black;
     }
 
     main {
