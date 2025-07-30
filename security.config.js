@@ -1,10 +1,20 @@
 /**
  * Security configuration for production deployment
  * Use with your web server (nginx, Apache, etc.) or hosting provider
+ * 
+ * IMPORTANT: Some CSP directives only work via HTTP headers:
+ * - frame-ancestors (prevents clickjacking)
+ * - form-action (restricts form submissions) 
+ * - upgrade-insecure-requests (forces HTTPS)
+ * - sandbox (applies sandbox restrictions)
+ * 
+ * The meta tag in cv.html provides basic protection but should be 
+ * supplemented with proper HTTP headers in production.
  */
 
 export const securityHeaders = {
     // Content Security Policy - restrictive policy for CV site
+    // Note: frame-ancestors, form-action, upgrade-insecure-requests only work via HTTP headers, not meta tags
     "Content-Security-Policy": [
         "default-src 'self'",
         "script-src 'self'",
@@ -14,9 +24,9 @@ export const securityHeaders = {
         "connect-src 'self'",
         "object-src 'none'",
         "base-uri 'self'",
-        "frame-ancestors 'none'",
-        "form-action 'none'",
-        "upgrade-insecure-requests"
+        "frame-ancestors 'none'", // HTTP header only
+        "form-action 'none'", // HTTP header only
+        "upgrade-insecure-requests" // HTTP header only
     ].join("; "),
 
     // Prevent MIME type sniffing
