@@ -1,6 +1,7 @@
 import { dom, network } from "./cv.lib.js";
 import { CvBuilder } from "./cv.builder.js";
 import { ThemeManager } from "./cv.theme.js";
+import { CvValidationError } from "./cv.validator.js";
 
 /** @type {Readonly<{DATA_PATH: string, MAINTENANCE_MESSAGE: string}>} */
 const CONFIG = Object.freeze({
@@ -42,7 +43,13 @@ async function initializeCV() {
         new CvBuilder().build(cvData);
         new ThemeManager();
     } catch (error) {
-        console.error("Failed to initialize CV:", error);
+        if (error instanceof CvValidationError) {
+            console.error("CV Data Validation Failed:", error.message);
+            console.error("Field:", error.field);
+            console.error("Value:", error.value);
+        } else {
+            console.error("Failed to initialize CV:", error);
+        }
         showMaintenancePage();
     }
 }

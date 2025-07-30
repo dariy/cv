@@ -1,6 +1,7 @@
 import { contact, dom, links, time } from "./cv.lib.js";
 import "./cv.fragment.js";
 import { phone } from "./cv.phone.js";
+import { CvValidator, CvValidationError } from "./cv.validator.js";
 
 /**
  * Builds and renders CV content from provided data
@@ -86,16 +87,19 @@ export class CvBuilder {
     }
 
     /**
-     * Validates required CV data
+     * Validates required CV data using comprehensive validation
      * @private
-     * @throws {Error} If required data is missing
+     * @throws {CvValidationError} If validation fails
      */
     validateData(cv) {
-        const required = ["name", "summary", "contacts", "experience", "expertise", "education"];
-        const missing = required.filter((field) => !cv[field]);
-
-        if (missing.length > 0) {
-            throw new Error(`Missing required CV data: ${missing.join(", ")}`);
+        try {
+            CvValidator.validate(cv);
+        } catch (error) {
+            if (error instanceof CvValidationError) {
+                console.error(`CV Validation Error in ${error.field}:`, error.message, error.value);
+                throw error;
+            }
+            throw new Error(`CV validation failed: ${error.message}`);
         }
     }
 
