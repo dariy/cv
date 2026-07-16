@@ -28,9 +28,9 @@
     },
     "links": [
       {
-        "url": "https://github.com/dariy/cv",
+        "url": "https://github.com/dariy",
         "prefix": "GitHub: ",
-        "title": "dariy<i>/</i>cv"
+        "title": "dariy"
       },
       {
         "url": "https://www.linkedin.com/in/alexeidarii",
@@ -40,6 +40,19 @@
     ]
   },
   "experience": [
+    {
+      "role": "Independent Software Developer / Creator",
+      "company": {
+        "name": "Point Engine (Open-Source)",
+        "url": "https://point.photos"
+      },
+      "startDate": "2025-02",
+      "achievements": [
+        "Designed and developed an open-source, containerized <a href='https://github.com/dariy/point'>photoblog engine</a> (go + vanilla js) optimized for touch-first and mobile-first layouts.",
+        "Streamlined development and deployment pipelines by leveraging Podman, GitHub Actions and modern backend technologies.",
+        "Accelerated system implementation and automated complex development workflows utilizing agentic AI tools, including Claude Code and Gemini CLI."
+      ]
+    },
     {
       "role": "Delivery Manager",
       "company": {
@@ -90,7 +103,7 @@
       "endDate": "2019-02",
       "achievements": [
         "Enhanced manufacturing data management through database migration and modernized <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> infrastructure.",
-        "Delivered a refactored <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> orchestrator, including an orchestrator with 85% unit test coverage, robust monitoring <a href='https://prometheus.io/'>Prometheus</a>, <a href='https://grafana.com/'>Grafana</a>), and a scalable configuration service <a href='https://learn.microsoft.com/en-us/aspnet/core/web-api/'>ASP.NET WebAPI</a>, <a href='https://en.wikipedia.org/wiki/CI/CD'>CI/CD</a>).",
+        "Delivered a refactored <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> orchestrator, including an orchestrator with 85% unit test coverage, robust monitoring (<a href='https://prometheus.io/'>Prometheus</a>, <a href='https://grafana.com/'>Grafana</a>), and a scalable configuration service (<a href='https://learn.microsoft.com/en-us/aspnet/core/web-api/'>ASP.NET WebAPI</a>, <a href='https://en.wikipedia.org/wiki/CI/CD'>CI/CD</a>).",
         "Developed a customer onboarding portal (<a href='https://en.wikipedia.org/wiki/ASP.NET_MVC'>ASP.NET MVC</a>)."
       ]
     },
@@ -160,8 +173,8 @@
         "Russian (native)",
         "English (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>B2+ CEFR</a>)",
         "Ukrainian",
-        "Romanian (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>A2 CEFR</a>)",
-        "French (beginner)"
+        "Romanian (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>B1 CEFR</a>)",
+        "French (<a href='https://conversaflex.com/blog/resources/level-3-french-quebec'>Level 3 / A1+ CEFR</a>)"
       ]
     }
   ]

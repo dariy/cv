@@ -1,0 +1,518 @@
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+:root {
+    /* Theme Colors */
+    --color-text-dark: #333;
+    --color-text-light: aliceblue;
+    --color-bg-dark: #333;
+    --color-bg-light: aliceblue;
+    --color-highlight-dark: #2b2;
+    --color-highlight-light: #108010;
+
+    /* Default Light Theme */
+    --color-text: var(--color-text-dark);
+    --color-bg: var(--color-bg-light);
+    --color-header-bg: var(--color-bg-dark);
+    --color-header-text: var(--color-text-light);
+    --color-highlight-primary: var(--color-highlight-dark);
+    --color-highlight-secondary: var(--color-highlight-light);
+
+    /* Typography */
+    --font-family: "Verdana", "Arial";
+    --font-size-base: 0.8rem;
+    --font-size-large: 1rem;
+    --font-size-h1: 1.5rem;
+    --font-size-h2: 1.2rem;
+    --font-size-h3: 1rem;
+    --font-weight-bold: 700;
+
+    /* Layout */
+    --max-width: 48rem;
+    --main-width: 34rem;
+    --sidebar-width: 14rem;
+    --spacing: 1rem;
+
+    /* Breakpoints */
+    --mobile-breakpoint: 768px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --color-text: var(--color-text-light);
+    --color-bg: var(--color-bg-dark);
+    --color-header-bg: #222;
+    --color-header-text: var(--color-text-light);
+    --color-highlight-primary: var(--color-highlight-dark);
+    --color-highlight-secondary: var(--color-highlight-light);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --color-text: var(--color-text-dark);
+    --color-bg: var(--color-bg-light);
+    --color-header-bg: var(--color-bg-dark);
+    --color-header-text: var(--color-text-light);
+    --color-highlight-primary: var(--color-highlight-dark);
+    --color-highlight-secondary: var(--color-highlight-light);
+}
+
+/* System Preference - Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --color-text: var(--color-text-light);
+        --color-bg: var(--color-bg-dark);
+        --color-header-bg: #222;
+        --color-header-text: var(--color-text-light);
+    }
+
+    /* Apply dark mode link styling for system preference */
+    :root:not([data-theme]) main a {
+        color: var(--color-highlight-primary);
+        text-decoration: none;
+    }
+
+    :root:not([data-theme]) main a:hover {
+        color: var(--color-highlight-secondary);
+        text-decoration: underline;
+    }
+
+    :root:not([data-theme]) main a:visited {
+        color: var(--color-highlight-primary);
+        text-decoration: underline !important;
+    }
+}
+
+/* Reset */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dt,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 400;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-header-text);
+    background-color: var(--color-header-bg);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+h1,
+h2,
+h3 {
+    text-transform: capitalize;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    padding: 0.8rem 0 0 0;
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+}
+
+i {
+    color: var(--color-highlight-primary);
+    font-style: normal;
+}
+
+main i {
+    color: var(--color-highlight-secondary);
+}
+
+/* ==========================================================================
+   Layout & Sections
+   ========================================================================== */
+header,
+main,
+footer {
+    width: var(--max-width);
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    max-width: var(--max-width);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--spacing) 0;
+}
+
+header h1,
+header h2 {
+    text-align: left;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+header p {
+    font-size: var(--font-size-large);
+}
+
+header a,
+footer a {
+    text-decoration: underline;
+}
+
+header a:hover,
+footer a:hover {
+    color: var(--color-highlight-primary);
+}
+
+/* Main Container */
+.main-container {
+    background-color: var(--color-bg);
+}
+
+main {
+    max-width: var(--max-width);
+    padding: 0 0 var(--spacing) 0;
+    color: var(--color-text);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+main h3 {
+    padding: 0.3rem 0 0 0;
+}
+
+
+main ul {
+    list-style-type: disc;
+    margin-left: 0.5rem;
+    padding-left: var(--spacing);
+    padding-bottom: 0.3rem;
+}
+
+/* Sections */
+section:nth-child(odd) {
+    padding: 0 var(--spacing);
+}
+
+section.summary {
+    width: var(--main-width);
+    position: relative;
+}
+
+section.summary .theme-toggle {
+    position: absolute;
+    top: -0.1rem; /* Align with h1 */
+    right: 0.5rem;
+}
+
+section.contacts {
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+}
+
+section.contacts ul {
+    list-style: none;
+}
+
+section.contacts li {
+    font-size: var(--font-size-large);
+}
+
+section.experience,
+section.education {
+    width: var(--main-width);
+}
+
+section.skills,
+section.additional-info {
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+}
+
+/* Footer */
+footer {
+    padding: var(--spacing);
+    text-align: left;
+}
+
+footer p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* For mobile, ensure the theme toggle stays in position */
+@media screen and (max-width: 480px) {
+    section.summary .theme-toggle {
+        right: var(--spacing);
+    }
+}
+
+/* ==========================================================================
+   Typography & Text Styles
+   ========================================================================== */
+.dates {
+    color: var(--color-text);
+    font-style: italic;
+    padding-bottom: 0.3rem;
+}
+
+section.summary strong {
+    color: var(--color-highlight-primary);
+}
+
+/* ==========================================================================
+   Links & Interactive Elements
+   ========================================================================== */
+
+/* Theme Toggle */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.07rem 0.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s ease;
+    color: var(--color-header-text);
+    position: relative;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--color-highlight-primary);
+    outline-offset: 2px;
+}
+
+/* Tooltip styling */
+.theme-toggle::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    pointer-events: none;
+    z-index: 10;
+    margin-top: 0.5rem;
+}
+
+.theme-toggle:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+a {
+    color: var(--color-header-text);
+}
+
+a:hover {
+    color: var(--color-highlight-secondary);
+}
+
+a:visited {
+    color: var(--color-header-text);
+    text-decoration: underline;
+}
+
+/* Main links - Light mode (default) */
+main a {
+    color: var(--color-highlight-secondary);
+    text-decoration: none;
+}
+
+main a:hover {
+    color: var(--color-highlight-primary);
+    text-decoration: underline;
+}
+
+main a:visited {
+    color: var(--color-text);
+    text-decoration: underline !important;
+}
+
+/* Main links - Dark mode */
+[data-theme="dark"] main a {
+    color: var(--color-highlight-primary);
+    text-decoration: none;
+}
+
+[data-theme="dark"] main a:hover {
+    color: var(--color-highlight-secondary);
+    text-decoration: underline;
+}
+
+[data-theme="dark"] main a:visited {
+    color: var(--color-highlight-primary);
+    text-decoration: underline !important;
+}
+
+/* Contact Elements */
+.thePhone::before,
+.theEmail::before {
+    margin-right: 0.4rem;
+    color: var(--color-highlight-primary);
+}
+
+.thePhone::before {
+    content: "\260E";
+}
+
+.theEmail::before {
+    content: "\2709";
+    font-weight: var(--font-weight-bold);
+}
+
+.theEmail a,
+.theEmailRequest {
+    cursor: pointer;
+}
+
+.theEmail a:hover,
+.theEmail a:hover .delimiter {
+    color: var(--color-highlight-primary);
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* Print-only elements (this stylesheet is loaded with media="screen";
+   print styling lives in cv.print.css) */
+.print {
+    display: none;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    :root {
+        --max-width: 100%;
+        --main-width: 100%;
+        --sidebar-width: 100%;
+        /*--font-size-base: 0.9rem;*/
+        /*--font-size-large: 1.1rem;*/
+    }
+
+    header {
+        flex-direction: column;
+        /*gap: var(--spacing);*/
+    }
+
+    section {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    section:nth-child(even) {
+        padding: 0 var(--spacing);
+    }
+
+
+    main {
+        flex-direction: column;
+    }
+
+    main h3 {
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    main h3 i {
+        display: table-column;
+    }
+
+    main h3 a:first-of-type::before {
+        content: '@ ';
+    }
+
+    section.contacts {
+        margin-top: 0.5rem;
+    }
+
+    /* Improve touch targets for mobile */
+    a, .theEmail a, .theEmailRequest {
+        display: inline-block;
+    }
+
+    section.contacts li {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
