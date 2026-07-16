@@ -1,7 +1,7 @@
 {
   "name": "Alexei Darii",
   "summary": {
-    "template": "Dedicated Software Developer with **theProfessionalYears** of&nbsp;experience, including leadership, seeking a&nbsp;long&#8209;term <strong>Senior Software Developer</strong> role in&nbsp;<a href='https://www.google.com/maps/place/Montreal'>Montréal</a> or&nbsp;remote. Proven ability to&nbsp;contribute significantly to&nbsp;complex projects, with a&nbsp;preference for a&nbsp;focused, stable development environment.",
+    "template": "Dedicated Software Developer<sup><a href='https://www.oiq.qc.ca/en/general-public/protection-of-the-public/reporting-illegal-practice-of-engineering/'>*</a></sup> with **theProfessionalYears** of&nbsp;experience, including leadership, seeking a&nbsp;long&#8209;term <strong>Software Developer</strong><sup><a href='https://www.oiq.qc.ca/en/general-public/protection-of-the-public/reporting-illegal-practice-of-engineering/'>*</a></sup> role in&nbsp;<a href='https://www.google.com/maps/place/Montreal'>Montréal</a> or&nbsp;remote. Proven ability to&nbsp;contribute significantly to&nbsp;complex projects, with a&nbsp;preference for a&nbsp;focused, stable development environment.",
     "since": 2005
   },
   "contacts": {
@@ -28,9 +28,9 @@
     },
     "links": [
       {
-        "url": "https://github.com/dariy/cv",
+        "url": "https://github.com/dariy",
         "prefix": "GitHub: ",
-        "title": "dariy<i>/</i>cv"
+        "title": "dariy"
       },
       {
         "url": "https://www.linkedin.com/in/alexeidarii",
@@ -40,6 +40,22 @@
     ]
   },
   "experience": [
+    {
+      "role": "Independent Creator",
+      "company": {
+        "name": "Point Engine",
+        "url": "https://point.photos"
+      },
+      "location": {
+        "title": "Canada",
+        "url": "https://www.google.com/maps/place/Canada/"
+      },
+      "startDate": "2025-02",
+      "endDate": "current",
+      "achievements": [
+        "Designed and developed an open-source, containerized <a href='https://github.com/dariy/point'>photoblog engine</a>."
+      ]
+    },
     {
       "role": "Delivery Manager",
       "company": {
@@ -60,7 +76,7 @@
       ]
     },
     {
-      "role": "Lead Software Developer",
+      "role": "Lead Software Engineer",
       "company": {
         "name": "EPAM Systems",
         "url": "https://www.epam.com"
@@ -72,12 +88,12 @@
       "startDate": "2019-03",
       "endDate": "2022-06",
       "achievements": [
-        "Led the technical design and implementation of <a href='https://cloud.google.com/learn/what-is-microservices-architecture'>a microservices architecture</a>, resolving critical performance and availability issues.",
+        "Led the technical design and implementation of <a href='https://cloud.google.com/learn/what-is-microservices-architecture'>a microservices architecture</a>, resolving critical availability issues.",
         "Implemented key <a href='https://en.wikipedia.org/wiki/CI/CD'>CI/CD</a> pipelines and code review processes, enhancing team efficiency and software quality."
       ]
     },
     {
-      "role": "Senior Software Developer",
+      "role": "Senior Software Engineer",
       "company": {
         "name": "EPAM Systems",
         "url": "https://www.epam.com"
@@ -95,7 +111,7 @@
       ]
     },
     {
-      "role": "Senior Software Developer",
+      "role": "Senior Software Engineer",
       "company": {
         "name": "Arkadium",
         "url": "https://www.arkadium.com"
@@ -106,7 +122,7 @@
       "startDate": "2017-02",
       "endDate": "2017-12",
       "achievements": [
-        "Developed a waterfall system for video ad providers, migrated analytics SDKs for <a href='https://en.wikipedia.org/wiki/Windows_8'>Win8</a> titles, resolved numerous player-reported crashes and UI issues, and collaborated directly with Microsoft engineers on feature requirements and technical solutions."
+        "Developed a waterfall system for video ad providers, migrated analytics SDKs for <a href='https://en.wikipedia.org/wiki/Windows_8'>Win8</a> titles, resolved numerous player-reported crashes and UI issues, and collaborated directly with Microsoft on feature requirements and technical solutions."
       ]
     }
   ],
@@ -133,7 +149,8 @@
     {
       "title": "Side areas",
       "skills": [
-        "<a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript'>JavaScript</a>",
+        "<a href='https://go.dev/'>Go</a>",
+        "<a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript'>js</a>",
         "<a href='https://en.wikipedia.org/wiki/Smalltalk'>Smalltalk</a> (<a href='https://pharo.org/'>Pharo</a>)",
         "<a href='https://www.python.org/'>Python</a>",
         "<a href='https://cloud.google.com/learn/certification/data-engineer'>Data Engineering</a>",
@@ -162,6 +179,12 @@
         "Ukrainian",
         "Romanian (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>B1 CEFR</a>)",
         "French (<a href='https://conversaflex.com/blog/resources/level-3-french-quebec'>Level 3 / A1+ CEFR</a>)"
+      ]
+    },
+    {
+      "title": "Base keywords worth mentioning",
+      "skills": [
+        "<a href='https://en.wikipedia.org/wiki/Test-driven_development'>TDD</a>, <a href='https://en.wikipedia.org/wiki/SCRUM'>SCRUM</a>, <a href='https://en.wikipedia.org/wiki/Kanban'>Kanban</a>, <a href='https://en.wikipedia.org/wiki/Extreme_programming'>eXtreme Programming</a>, <a href='https://en.wikipedia.org/wiki/SOLID'>SOLID</a>, <a href='https://en.wikipedia.org/wiki/GRASP'>GRASP</a>, <a href='https://en.wikipedia.org/wiki/Representational_state_transfer'>REST API</a>"
       ]
     }
   ]
