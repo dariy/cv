@@ -123,14 +123,12 @@ b {
 
 /* Skills-type lists print inline, comma-separated: one word per bullet line
    wastes the vertical space needed to keep the document on one page. */
-section.skills ul,
-section.additional-info ul {
+section.skills ul {
     list-style: none;
     margin-left: 0;
 }
 
-section.skills li,
-section.additional-info li {
+section.skills li {
     display: inline;
 }
 
@@ -160,6 +158,9 @@ section.contacts ul {
     font-weight: bold;
 }
 
+/* Space savers for the one-page target: the References boilerplate and the
+   footer URL carry no ATS value, so drop them from print entirely. */
+section.additional-info,
 footer {
-    margin-top: 5pt;
+    display: none !important;
 }
