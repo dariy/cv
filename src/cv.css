@@ -441,10 +441,10 @@ main a:visited {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
-@media screen {
-    .print {
-        display: none;
-    }
+/* Print-only elements (this stylesheet is loaded with media="screen";
+   print styling lives in cv.print.css) */
+.print {
+    display: none;
 }
 
 /* Mobile Responsive Styles */
@@ -502,89 +502,6 @@ main a:visited {
 
     section.contacts li {
         margin-bottom: 0.5rem;
-    }
-}
-
-@media print {
-    /* Reset theme variables for printing */
-    :root, [data-theme="dark"], [data-theme="light"] {
-        --color-text: black;
-        --color-bg: white;
-        --color-header-text: black;
-        --color-header-bg: white;
-        --color-highlight-primary: black;
-        --color-highlight-secondary: black;
-        --font-size-base: 0.8rem;
-        --font-size-large: 1rem;
-        --spacing: 0.5rem;
-    }
-
-    /* Hide theme toggle and tooltip in print */
-    .theme-toggle,
-    .theme-toggle::after {
-        display: none;
-    }
-  
-    body,
-    a,
-    .thePhone::before,
-    .theEmail::before,
-    span,
-    strong,
-    i,
-    em,
-    b {
-        color: black !important;
-        background-color: transparent !important;
-        text-decoration: none !important;
-    }
-
-    em,
-    i {
-        font-style: italic !important;
-    }
-
-    strong,
-    b {
-        font-weight: bold !important;
-    }
-
-    section.summary a {
-        font-style: italic;
-        color: black;
-    }
-
-    main {
-        padding: 0;
-    }
-
-    section.skills {
-        padding-left: 0.5rem;
-    }
-
-    .main-container {
-        background-color: transparent;
-    }
-
-    .web {
-        display: none;
-    }
-
-    footer {
-        padding: 0.5rem;
-    }
-
-    .print {
-        line-height: 1.4rem;
-        display: inline-block;
-    }
-
-    .intend {
-        padding-left: 1rem;
-    }
-
-    footer * {
-        color: black !important;
     }
 }
 
