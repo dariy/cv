@@ -46,7 +46,12 @@
         "name": "Point Engine (Open-Source)",
         "url": "https://point.photos"
       },
+      "location": {
+        "title": "Montréal, QC, Canada",
+        "url": "https://www.google.com/maps/place/Montreal/"
+      },
       "startDate": "2025-02",
+      "endDate": "current",
       "achievements": [
         "Designed and developed an open-source, containerized <a href='https://github.com/dariy/point'>photoblog engine</a> (go + vanilla js) optimized for touch-first and mobile-first layouts.",
         "Streamlined development and deployment pipelines by leveraging Podman, GitHub Actions and modern backend technologies.",
