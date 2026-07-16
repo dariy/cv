@@ -1,6 +1,6 @@
 /**
  * @typedef {import("dompurify")} DOMPurify
- * @typedef {import("@types/dompurify").Config} DOMPurifyConfig
+ * @typedef {import("dompurify").Config} DOMPurifyConfig
  */
 
 import DOMPurify from "dompurify";
