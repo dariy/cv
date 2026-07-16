@@ -75,6 +75,7 @@ export class CvBuilder {
         try {
             document.title = `CV: ${cv.name}`;
             this.updateAuthors(cv.name);
+            this.updatePdfDownloadName(cv.name);
             this.insertSummary(cv.summary);
             this.insertContacts(cv.name, cv.contacts);
             this.insertExperience(cv.experience);
@@ -110,6 +111,18 @@ export class CvBuilder {
      */
     updateAuthors(name) {
         dom.$$(CvBuilder.SELECTORS.AUTHOR).forEach((element) => (element.innerText = name));
+    }
+
+    /**
+     * Names the downloaded PDF file after the CV author
+     * @private
+     * @param {string} name - Author name
+     */
+    updatePdfDownloadName(name) {
+        const link = dom.$(CvBuilder.SELECTORS.PDF_DOWNLOAD);
+        if (link) {
+            link.setAttribute("download", `CV - ${name}.pdf`);
+        }
     }
 
     /**
@@ -246,6 +259,7 @@ export class CvBuilder {
  */
 CvBuilder.SELECTORS = Object.freeze({
     AUTHOR: ".author",
+    PDF_DOWNLOAD: ".pdf-download",
     SUMMARY: ".summary",
     CURRENT_YEAR: ".theCurrentYear",
     PROFESSIONAL_YEARS: ".theProfessionalYears",
