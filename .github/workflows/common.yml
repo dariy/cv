@@ -39,6 +39,9 @@ jobs:
       - name: Create JSON file
         run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" | base64 -d > dist/data/cv.json
 
+      - name: Generate PDF
+        run: npm run pdf
+
       - name: Push to build branch
         uses: s0/git-publish-subdir-action@v2.6.0  # Specify exact version instead of develop
         env:

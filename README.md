@@ -5,6 +5,7 @@ A CV site that renders print-ready HTML from JSON data.
 ## 🚀 Features
 
 - **Print-ready** HTML output
+- **Downloadable PDF** generated at build time from the print stylesheet (Puppeteer)
 - **Data handling**
     - HTML sanitization using DOMPurify
     - Phone number encoding
@@ -112,6 +113,11 @@ gh secret list -R yourusername/cv
 * Preview production build
     ```bash
     npm run preview
+    ```
+
+* Generate the downloadable PDF (run after `npm run build`; uses `dist/data/cv.json`, falling back to local `data/cv.json` or the template)
+    ```bash
+    npm run pdf
     ```
 
 ## 📦 Deployment
