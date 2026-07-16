@@ -199,8 +199,8 @@ export class CvValidator {
         if (!this.isValidDate(exp.startDate)) {
             throw new CvValidationError(`Start date at index ${index} must be YYYY-MM format`, `experience[${index}].startDate`, exp.startDate);
         }
-        if (!this.isValidDate(exp.endDate)) {
-            throw new CvValidationError(`End date at index ${index} must be YYYY-MM format`, `experience[${index}].endDate`, exp.endDate);
+        if (!this.isValidEndDate(exp.endDate)) {
+            throw new CvValidationError(`End date at index ${index} must be YYYY-MM format or "current"`, `experience[${index}].endDate`, exp.endDate);
         }
 
         // Achievements validation
@@ -256,8 +256,8 @@ export class CvValidator {
             if (!this.isValidDate(edu.startDate)) {
                 throw new CvValidationError(`Education start date at index ${index} must be YYYY-MM format`, `education[${index}].startDate`, edu.startDate);
             }
-            if (!this.isValidDate(edu.endDate)) {
-                throw new CvValidationError(`Education end date at index ${index} must be YYYY-MM format`, `education[${index}].endDate`, edu.endDate);
+            if (!this.isValidEndDate(edu.endDate)) {
+                throw new CvValidationError(`Education end date at index ${index} must be YYYY-MM format or "current"`, `education[${index}].endDate`, edu.endDate);
             }
             if (typeof edu.place !== "string" || edu.place.trim().length === 0) {
                 throw new CvValidationError(`Education place at index ${index} must be non-empty`, `education[${index}].place`, edu.place);
@@ -293,5 +293,13 @@ export class CvValidator {
         const [year, month] = date.split("-").map(Number);
         return year >= 1900 && year <= new Date().getFullYear() + 10 &&
                month >= 1 && month <= 12;
+    }
+
+    /**
+     * Validates end date: YYYY-MM format or "current" for ongoing positions
+     * @private
+     */
+    static isValidEndDate(date) {
+        return date === "current" || this.isValidDate(date);
     }
 }

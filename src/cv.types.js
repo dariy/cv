@@ -36,8 +36,8 @@
  * @property {string} role - Job title or role
  * @property {Company} company - Company information
  * @property {Location} location - Job location
- * @property {string} startDate - Start date (YYYY-MM-DD)
- * @property {string} endDate - End date (YYYY-MM-DD)
+ * @property {string} startDate - Start date (YYYY-MM)
+ * @property {string} endDate - End date (YYYY-MM) or "current" for ongoing positions
  * @property {string[]} achievements - List of achievements/responsibilities
  */
 
@@ -50,8 +50,8 @@
 /**
  * @typedef {Object} Education
  * @property {string} title - Degree or certification title
- * @property {string} startDate - Start date (YYYY-MM-DD)
- * @property {string} endDate - End date (YYYY-MM-DD)
+ * @property {string} startDate - Start date (YYYY-MM)
+ * @property {string} endDate - End date (YYYY-MM) or "current" for ongoing education
  * @property {string} place - Institution name
  * @property {string[]} additionalInfo - Additional details about the education
  */

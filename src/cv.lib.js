@@ -182,9 +182,16 @@ export const time = Object.freeze({
     },
 
     /**
+     * Checks whether an end date marks an ongoing position
+     * @param {string} date - End date (YYYY-MM, "current" or "present")
+     * @returns {boolean} True if ongoing
+     */
+    isOngoing: (date) => date === "current" || date === "present",
+
+    /**
      * Formats date range
      * @param {string} start - Start date (YYYY-MM)
-     * @param {string} end - End date (YYYY-MM)
+     * @param {string} end - End date (YYYY-MM or "current")
      * @returns {string} Formatted date range
      */
     buildRange: (start, end) => {
@@ -195,23 +202,23 @@ export const time = Object.freeze({
         });
 
         const formatDate = (date) => formatter.format(new Date(`${date}-01`));
-        return `${formatDate(start)}&ndash;${formatDate(end)}`;
+        return `${formatDate(start)}&ndash;${time.isOngoing(end) ? "Present" : formatDate(end)}`;
     },
 
     /**
      * Calculates and formats duration between dates
      * @param {string} start - Start date (YYYY-MM)
-     * @param {string} [end="present"] - End date (YYYY-MM)
+     * @param {string} [end="current"] - End date (YYYY-MM or "current")
      * @returns {string} Formatted duration
      */
-    buildText: (start, end = "present") => {
+    buildText: (start, end = "current") => {
         const parseDate = (date) => {
             const [year, month] = date.split("-").map(Number);
             return new Date(Date.UTC(year, month - 1));
         };
 
         const startDate = parseDate(start);
-        const endDate = end === "present" ? new Date() : parseDate(end);
+        const endDate = time.isOngoing(end) ? new Date() : parseDate(end);
 
         const totalMonths =
             (endDate.getUTCFullYear() - startDate.getUTCFullYear()) * 12 +
