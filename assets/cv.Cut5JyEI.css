@@ -235,7 +235,6 @@ main h3 {
     padding: 0.3rem 0 0 0;
 }
 
-
 main ul {
     list-style-type: disc;
     margin-left: 0.5rem;
@@ -257,6 +256,12 @@ section.summary .theme-toggle {
     position: absolute;
     top: -0.1rem; /* Align with h1 */
     right: 0.5rem;
+}
+
+section.summary .pdf-download {
+    position: absolute;
+    top: 0; /* Align with the theme toggle */
+    right: 3rem;
 }
 
 section.contacts {
@@ -299,6 +304,10 @@ footer p {
 @media screen and (max-width: 480px) {
     section.summary .theme-toggle {
         right: var(--spacing);
+    }
+
+    section.summary .pdf-download {
+        right: calc(var(--spacing) + 2.5rem);
     }
 }
 
@@ -356,7 +365,9 @@ section.summary strong {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s, visibility 0.2s;
+    transition:
+        opacity 0.2s,
+        visibility 0.2s;
     pointer-events: none;
     z-index: 10;
     margin-top: 0.5rem;
@@ -365,6 +376,28 @@ section.summary strong {
 .theme-toggle:hover::after {
     opacity: 1;
     visibility: visible;
+}
+
+/* PDF Download */
+.pdf-download {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid var(--color-header-text);
+    border-radius: 0.3rem;
+    color: var(--color-header-text);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.pdf-download:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pdf-download:focus {
+    outline: 2px solid var(--color-highlight-primary);
+    outline-offset: 2px;
 }
 
 a {
@@ -473,7 +506,6 @@ main a:visited {
         padding: 0 var(--spacing);
     }
 
-
     main {
         flex-direction: column;
     }
@@ -488,7 +520,7 @@ main a:visited {
     }
 
     main h3 a:first-of-type::before {
-        content: '@ ';
+        content: "@ ";
     }
 
     section.contacts {
@@ -496,7 +528,9 @@ main a:visited {
     }
 
     /* Improve touch targets for mobile */
-    a, .theEmail a, .theEmailRequest {
+    a,
+    .theEmail a,
+    .theEmailRequest {
         display: inline-block;
     }
 
