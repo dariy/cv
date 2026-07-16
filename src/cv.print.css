@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Print / ATS Stylesheet
+   Loaded with media="print" while cv.css is media="screen", so this file
+   fully defines the printed document. Goal: a single-column, black-on-white,
+   machine-parsable layout that Applicant Tracking Systems can read reliably.
+   ========================================================================== */
+
+@page {
+    size: letter;
+    margin: 10mm 14mm;
+}
+
+/* Reset */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    color: black !important;
+    background: transparent !important;
+}
+
+/* ATS-safe base typography */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.25;
+    color: black;
+    background: white;
+}
+
+/* Single-column, source-order layout: ATS parsers read multi-column
+   pages left-to-right and scramble the content. */
+header,
+main,
+footer,
+.main-container,
+section {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 15pt;
+}
+
+h2 {
+    font-size: 11.5pt;
+    margin-top: 5pt;
+    border-bottom: 1pt solid black;
+}
+
+h3 {
+    font-size: 10pt;
+    margin-top: 4pt;
+}
+
+/* Keep headings attached to their content and bullets unsplit across pages */
+h1,
+h2,
+h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+}
+
+ul {
+    list-style: disc;
+    margin: 1pt 0 3pt 14pt;
+}
+
+li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.dates {
+    font-style: italic;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+strong,
+b {
+    font-weight: bold;
+}
+
+/* Hide screen-only chrome; show print-only alternatives (bare URLs, etc.) */
+.theme-toggle,
+.web {
+    display: none !important;
+}
+
+.print {
+    display: inline;
+}
+
+/* Skills-type lists print inline, comma-separated: one word per bullet line
+   wastes the vertical space needed to keep the document on one page. */
+section.skills ul,
+section.additional-info ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+section.skills li,
+section.additional-info li {
+    display: inline;
+}
+
+section.skills li:not(:last-child)::after {
+    content: ", ";
+}
+
+/* Contact lines: plain text labels instead of the on-screen glyph icons,
+   so parsers can classify each line. */
+section.contacts ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.theContactsLocation::before {
+    content: "Location: ";
+    font-weight: bold;
+}
+
+.thePhone::before {
+    content: "Phone: ";
+    font-weight: bold;
+}
+
+.theEmail::before {
+    content: "Email: ";
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 5pt;
+}

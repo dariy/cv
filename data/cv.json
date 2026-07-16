@@ -90,7 +90,7 @@
       "endDate": "2019-02",
       "achievements": [
         "Enhanced manufacturing data management through database migration and modernized <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> infrastructure.",
-        "Delivered a refactored <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> orchestrator, including an orchestrator with 85% unit test coverage, robust monitoring <a href='https://prometheus.io/'>Prometheus</a>, <a href='https://grafana.com/'>Grafana</a>), and a scalable configuration service <a href='https://learn.microsoft.com/en-us/aspnet/core/web-api/'>ASP.NET WebAPI</a>, <a href='https://en.wikipedia.org/wiki/CI/CD'>CI/CD</a>).",
+        "Delivered a refactored <a href='https://en.wikipedia.org/wiki/Extract,_transform,_load'>ETL</a> orchestrator, including an orchestrator with 85% unit test coverage, robust monitoring (<a href='https://prometheus.io/'>Prometheus</a>, <a href='https://grafana.com/'>Grafana</a>), and a scalable configuration service (<a href='https://learn.microsoft.com/en-us/aspnet/core/web-api/'>ASP.NET WebAPI</a>, <a href='https://en.wikipedia.org/wiki/CI/CD'>CI/CD</a>).",
         "Developed a customer onboarding portal (<a href='https://en.wikipedia.org/wiki/ASP.NET_MVC'>ASP.NET MVC</a>)."
       ]
     },

@@ -7,6 +7,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
     base: "./",
     build: {
+        // Never inline assets as data: URIs — the CSP (style-src 'self') forbids them
+        assetsInlineLimit: 0,
         rollupOptions: {
             input: resolve(__dirname, "src/cv.html"),
             output: {
