@@ -37,7 +37,20 @@ jobs:
         run: mkdir -p dist/data
 
       - name: Create JSON file
-        run: echo "${{ secrets.CV_DATA_JS_CONTENT }}" | base64 -d > dist/data/cv.json
+        env:
+          CV_DATA: ${{ secrets.CV_DATA_JS_CONTENT }}
+        run: |
+          # Never interpolate the secret into the script body: its quotes/newlines
+          # would be parsed as shell syntax. Pass it through the environment instead.
+          if printf '%s' "$CV_DATA" | base64 -d > cv.json.tmp 2>/dev/null && jq empty cv.json.tmp 2>/dev/null; then
+            echo "CV data decoded from base64."
+          elif printf '%s' "$CV_DATA" > cv.json.tmp && jq empty cv.json.tmp 2>/dev/null; then
+            echo "CV data used as raw JSON."
+          else
+            echo "::error::CV_DATA_JS_CONTENT is neither valid base64-encoded JSON nor valid raw JSON."
+            exit 1
+          fi
+          mv cv.json.tmp dist/data/cv.json
 
       - name: Generate PDF
         run: npm run pdf
