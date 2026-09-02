@@ -53,7 +53,7 @@
       "startDate": "2025-02",
       "endDate": "current",
       "achievements": [
-        "Designed and developed an open-source, containerized <a href='https://github.com/dariy/point'>photoblog engine</a>."
+        "Designed and developed an open-source, containerized <a href='https://github.com/dariy/point'>photoblog engine</a> utilizing AI-assisted approach."
       ]
     },
     {
@@ -178,7 +178,13 @@
         "English (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>B2+ CEFR</a>)",
         "Ukrainian",
         "Romanian (<a href='https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale'>B1 CEFR</a>)",
-        "French (<a href='https://conversaflex.com/blog/resources/level-3-french-quebec'>Level 3 / A1+ CEFR</a>)"
+        "French (<a href='https://conversaflex.com/blog/resources/level-4-french-quebec-what-it-means'>Level 4 / A2 CEFR</a>)"
+      ]
+    },
+    {
+      "title": "Base keywords worth mentioning",
+      "skills": [
+        "<a href='https://en.wikipedia.org/wiki/Test-driven_development'>TDD</a>, <a href='https://en.wikipedia.org/wiki/SCRUM'>SCRUM</a>, <a href='https://en.wikipedia.org/wiki/Kanban'>Kanban</a>, <a href='https://en.wikipedia.org/wiki/Extreme_programming'>eXtreme Programming</a>, <a href='https://en.wikipedia.org/wiki/SOLID'>SOLID</a>, <a href='https://en.wikipedia.org/wiki/GRASP'>GRASP</a>, <a href='https://en.wikipedia.org/wiki/Representational_state_transfer'>REST API</a>"
       ]
     },
     {
