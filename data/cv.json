@@ -186,6 +186,12 @@
       "skills": [
         "<a href='https://en.wikipedia.org/wiki/Test-driven_development'>TDD</a>, <a href='https://en.wikipedia.org/wiki/SCRUM'>SCRUM</a>, <a href='https://en.wikipedia.org/wiki/Kanban'>Kanban</a>, <a href='https://en.wikipedia.org/wiki/Extreme_programming'>eXtreme Programming</a>, <a href='https://en.wikipedia.org/wiki/SOLID'>SOLID</a>, <a href='https://en.wikipedia.org/wiki/GRASP'>GRASP</a>, <a href='https://en.wikipedia.org/wiki/Representational_state_transfer'>REST API</a>"
       ]
+    },
+    {
+      "title": "Base keywords worth mentioning",
+      "skills": [
+        "<a href='https://en.wikipedia.org/wiki/Test-driven_development'>TDD</a>, <a href='https://en.wikipedia.org/wiki/SCRUM'>SCRUM</a>, <a href='https://en.wikipedia.org/wiki/Kanban'>Kanban</a>, <a href='https://en.wikipedia.org/wiki/Extreme_programming'>eXtreme Programming</a>, <a href='https://en.wikipedia.org/wiki/SOLID'>SOLID</a>, <a href='https://en.wikipedia.org/wiki/GRASP'>GRASP</a>, <a href='https://en.wikipedia.org/wiki/Representational_state_transfer'>REST API</a>"
+      ]
     }
   ]
 }
